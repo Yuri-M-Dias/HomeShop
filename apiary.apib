@@ -7,7 +7,7 @@ HomeShop is an application to automatize your groceries needs, and to help you s
 ## Supermarkets Collection [/markets]
 
 ### List All Markets [GET]
-Como colocar as questões em REST?
+TODO: order by next, and latest used
 
 Returns a list of supermarkets, with links to their images.
 
@@ -15,69 +15,121 @@ Returns a list of supermarkets, with links to their images.
 
         [
             {
-                "market": "Extra",
-                "image": "../imgs/markets/extra.png"
+                "id": 1,
+                "name": "Extra",
+                "image": "../imgs/markets/extra.png",
+                "products": "/markets/1/products"
             },
             {
-                "market": "Carrefour",
-                "image": "../imgs/carrefour.png"
+                "id": 2,
+                "name": "Carrefour",
+                "image": "../imgs/markets/carrefour.png",
+                "products": "/markets/2/products"
             },
             {
-                "market": "Extra",
-                "image": "../imgs/extra.png"
-            },
-            {
-                "market": "Extra",
-                "image": "../imgs/extra.png"
-            },
-            {
-                "market": "Extra",
-                "image": "../imgs/extra.png"
-            },
+                "id": 3,
+                "name": "Bretas",
+                "image": "../imgs/markets/bretas.png",
+                "products": "/markets/3/products"
+            }
         ]
+            
+### Register a new Supermarket [POST]
 
-### Create a New Question [POST]
+Registers a new supermarket to make transactions on, with the base image and everything else to be used.
 
-You may create your own question using this action. It takes a JSON
-object containing a question and a collection of answers in the
-form of choices.
+Base64 images shortened, because apiary would complain otherwise.
 
 + Request (application/json)
 
         {
-            "question": "Favourite programming language?",
-            "choices": [
-                "Swift",
-                "Python",
-                "Objective-C",
-                "Ruby"
-            ]
+            "name": "Pão de Açucar",
+            "image": "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEASABIAAD//gAMQXBwbGVN",
+            "location": {
+                "lat": "37.7898",
+                "lon": "-122.3942"
+            }
         }
 
 + Response 201 (application/json)
 
     + Headers
 
-            Location: /questions/2
+            Location: /markets/5
 
     + Body
 
             {
-                "question": "Favourite programming language?",
-                "published_at": "2015-08-05T08:40:51.620Z",
-                "choices": [
-                    {
-                        "choice": "Swift",
-                        "votes": 0
-                    }, {
-                        "choice": "Python",
-                        "votes": 0
-                    }, {
-                        "choice": "Objective-C",
-                        "votes": 0
-                    }, {
-                        "choice": "Ruby",
-                        "votes": 0
-                    }
-                ]
+                "id": 5,
+                "name": "Pão de Açucar",
+                "image": "../imgs/markets/bretas.png",
+                "products": "/markets/5/products"
             }
+
+## Single Market [/markets/{market_id}]
+
+References each market, with more information about them, including links to the products and other functionalities.
+
++ Parameters
+    + market_id (number) - ID of the Market in the form of an integer
+
+### Market Detail [GET]
+
+Returns more information about one supermarket, with links to more actions.
+
++ Response 200 (application/json)
+
+        {
+            "id": 1,
+            "name": "Extra",
+            "header": "base64:/imgs/markets/extra-header.png",
+            "products": "/markets/1/products"
+        }
+
+# Group Products
+
+All the operations related to the products go here.
+
+## Products Collection [markets/{market_id}/products]
+
+References one collection of products from a single supermarket.
+
++ Parameters
+    + market_id (number) - ID of the Market in the form of an integer
+
+### Create a New Product on this supermarket [POST]
+
+Creates a new product with a POST request.
+
++ Request (application/json)
+
+        {
+            "name": "Sucrilhos",
+            "description": "They are yummy.",
+            "price": "R$45,00",
+            "current-stock": 45,
+            "image": "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEASABIAAD//gAMQXBwbGVN="
+        }
+
++ Response 201 (application/json)
+
+    + Headers
+
+            Location: /markets/1/products/2
+
+    + Body
+
+            {
+                "name": "Sucrilhos",
+                "description": "They are yummy.",
+                "price": "R$45,00",
+                "image": "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEASABIAAD//gAMQXBwbGVN="
+            }
+
+### Get all products for this supermarket, with filtering and pagination [GET]
+
+## Products Collection [markets/{market_id}/products/{product_id}]
+
+### Alter one product [POST]
+
+### Delete one product [DELETE]
