@@ -1,8 +1,50 @@
 FORMAT: 1A
+HOST: http://private-3c4e5-homeshop.apiary-mock.com
 
 # HomeShop
 
 HomeShop is an application to automatize your groceries needs, and to help you spend less time shopping.
+
+## Login [/login]
+
+Handles the login.
+
+### Handles login [POST]
+
+Handles the login of a previous user. Should be sent over SSL.
+
++ Request (application/json)
+
+        {
+            "username": "yuri-m-dias",
+            "password": "senha123"
+        }
+
++ Response 200 (application/json)
+
+    + Body
+
+            {
+                "auth-token": "tk_GmVtYvffWZM7D721iO4mFiXI1ywlDWsTyFQU"
+            }
+
++ Response 422 (application/json)
+
+    + Body
+
+            {
+                "error": "Failed to authenticate. Wrong username or password."
+            }
+
++ Response 500 (application/json)
+
+    + Body
+
+            {
+                "error": "Internal server error."
+            }
+
+# Group markets information
 
 ## Supermarkets Collection [/markets]
 
@@ -95,19 +137,62 @@ Returns more information about one supermarket, with links to more actions.
             "id": 1,
             "name": "Extra",
             "header": "base64:/imgs/markets/extra-header.png",
-            "products": "/markets/1/products"
+            "products": "/markets/1/products",
+            "location": {
+                "lat": "37.7898",
+                "lon": "-122.3942"
+            }
         }
 
-# Group Products
+# Group Products information
 
 All the operations related to the products go here.
 
-## Products Collection [markets/{market_id}/products]
+## Products Collection [/markets/{market_id}/products{?start,limit}]
 
 References one collection of products from a single supermarket.
 
 + Parameters
     + market_id (number) - ID of the Market in the form of an integer
+    + start (number) - number of the starting element, if paging
+    + limit (number) - limits the requet to this many elements
+
+### Get all products for this supermarket, with filtering and pagination [GET]
+TODO: filtering and sorting
+
++ Response 200 (application/json)
+
+        {
+            "market": "Extra",
+            "meta": {
+                "page": 1,
+                "start": 0,
+                "limit": 20
+            },
+            "products": [
+                {
+                    "id": 1,
+                    "name": "Sucrilhos",
+                    "description": "Yummy!",
+                    "price": "R$53,00",
+                    "image": "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEASABIAAD//gAMQXBwbGVN="
+                },
+                {
+                    "id": 2,
+                    "name": "Sucrilhos2",
+                    "description": "Yummy2!",
+                    "price": "R$54,00",
+                    "image": "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEASABIAAD//gAMQXBwbGVN="
+                },
+                {
+                    "id": 3,
+                    "name": "Sucrilhos3",
+                    "description": "Yummy!3",
+                    "price": "R$33,00",
+                    "image": "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEASABIAAD//gAMQXBwbGVN="
+                }
+            ]
+        }
 
 ### Create a New Product on this supermarket [POST]
 
@@ -138,12 +223,140 @@ Creates a new product with a POST request.
                 "image": "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEASABIAAD//gAMQXBwbGVN="
             }
 
-### Get all products for this supermarket, with filtering and pagination [GET]
 
-## Products Collection [markets/{market_id}/products/{product_id}]
+
+## Product detail [/markets/{market_id}/products/{product_id}]
+
+References one product from a market.
+
++ Parameters
+    + market_id (number) - ID of the Market in the form of an integer
+    + product_id (number) - ID of the Product in the form of an integer
+
+### Detail one product [GET]
+
++ Response 200 (application/json)
+
+    + Body
+
+            {
+                "name": "Sucrilhos",
+                "description": "They are yummy.",
+                "price": "R$45,00",
+                "image": "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEASABIAAD//gAMQXBwbGVN="
+            }
 
 ### Alter one product [POST]
 
++ Response 200 (application/json)
+
 ### Delete one product [DELETE]
 
-## Login [/login/{email}/{password}]
++ Response 200 (application/json)
+
+# Group User information
+
+## User detail [/users/{user_id}]
+
+References one product from a market.
+
++ Parameters
+    + user_id (number) - ID of the User in the form of an integer
+
+### Detail one product [GET]
+
++ Response 200 (application/json)
+
+    + Body
+
+            {
+                "name": "Sucrilhos"
+            }
+
+### Alter one product [POST]
+
++ Response 200 (application/json)
+
+### Delete one product [DELETE]
+
++ Response 200 (application/json)
+
+# Group Cart and history
+
+## Collection Cart current [/users/{user_id}/cart]
+
+The cart for the user specified.
+
++ Parameters
+    + user_id (number) - ID of the User in the form of an integer
+
+### Detail the cart collection [GET]
+
++ Response 200 (application/json)
+
+    + Body
+
+            {
+                "name": "Sucrilhos"
+            }
+
+### Alters a product from cart [POST]
+
++ Response 200 (application/json)
+
+    + Body
+
+            {
+                "status": "Success"
+            }
+
+### Adds a product to cart [PUT]
+
++ Response 200 (application/json)
+
+    + Body
+
+            {
+                "status": "Success"
+            }
+
+### Delete one product from cart [DELETE]
+
++ Response 200 (application/json)
+
+## Collection Cart history [/users/{user_id}/history]
+
+References the collection of all previous carts.
+
++ Parameters
+    + user_id (number) - ID of the User in the form of an integer
+
+### Get the collection with pagination [GET]
+
++ Response 200 (application/json)
+
+        {
+            "meta": {
+                "page": 1,
+                "start": 0,
+                "limit": 20
+            },
+            {
+                "id": 1,
+                "market": "Extra",
+                "total": "R$54,00",
+                "date": 1466209329
+            },
+            {
+                "id": 2,
+                "market": "Pão de Açucar",
+                "total": "R$87,92",
+                "date": 1466209330
+            },
+            {
+                "id": 3,
+                "market": "Extra",
+                "total": "R$11,23",
+                "date": 1466209331
+            },
+        }
