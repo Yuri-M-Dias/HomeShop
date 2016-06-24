@@ -258,28 +258,38 @@ References one product from a market.
 
 ## User detail [/users/{user_id}]
 
-References one product from a market.
+Retrieves user information.
 
 + Parameters
     + user_id (number) - ID of the User in the form of an integer
 
-### Detail one product [GET]
+### Information of an User [GET]
 
 + Response 200 (application/json)
 
     + Body
 
             {
-                "name": "Sucrilhos"
+                "name": "Leopoldo Magalhães",
+                "email": "leopoldo@gmail.com",
+                "cpf":"111.222.333-44",
+                "endereco": "Rua Leopoldo Magalhães Qd 44 Lt 67",
+                "cartao": "************1234"
             }
 
-### Alter one product [POST]
+### Alter user information [POST]
 
-+ Response 200 (application/json)
++ Request (application/json)
 
-### Delete one product [DELETE]
-
-+ Response 200 (application/json)
+            {
+                "name": "Leopoldo Magalhães",
+                "email": "leopoldo@gmail.com",
+                "cpf":"111.222.333-44",
+                "endereco": "Rua Leopoldo Magalhães Qd 44 Lt 67",
+                "cartao": "3879.2736.3512.1234"
+            }
+            
++ Response 200 (aplicaion/json)
 
 # Group Cart and history
 
