@@ -281,31 +281,13 @@ Retrieves user information.
 
 + Request (application/json)
 
-            {
-                "name": "Leopoldo Magalhães",
-                "email": "leopoldo@gmail.com",
-                "cpf":"111.222.333-44",
-                "endereco": "Rua Leopoldo Magalhães Qd 44 Lt 67",
-                "cartao": "3879.2736.3512.1234"
-            }
-            
-+ Response 200 (aplicaion/json)
-
-## User register [/users]
-
-Retrieves user information.
-
-### Register user [POST]
-
-+ Request (application/json)
-
-            {
-                "name": "Leopoldo Magalhães",
-                "email": "leopoldo@gmail.com",
-                "cpf":"111.222.333-44",
-                "endereco": "Rua Leopoldo Magalhães Qd 44 Lt 67",
-                "cartao": "3879.2736.3512.1234"
-            }
+        {
+            "name": "Leopoldo Magalhães",
+            "email": "leopoldo@gmail.com",
+            "cpf":"111.222.333-44",
+            "endereco": "Rua Leopoldo Magalhães Qd 44 Lt 67",
+            "cartao": "3879.2736.3512.1234"
+        }
 
 + Response 200 (aplicaion/json)
 
@@ -320,14 +302,56 @@ The cart for the user specified.
 
 ### Detail the cart collection [GET]
 
++ Request (application/json)
+
+        {
+            "id": 1
+        }
+
 + Response 200 (application/json)
 
     + Body
-
+    
             {
-                "name": "Sucrilhos"
+                "products": [
+                    {
+                        "id": 1,
+                        "name": "Sucrilhos",
+                        "description": "Yummy!",
+                        "price": "R$53,00",
+                        "quantity": 3
+                        "image": "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEASABIAAD//gAMQXBwbGVN="
+                    },
+                    {
+                        "id": 2,
+                        "name": "Omo",
+                        "description": "Sabão em pó ação total",
+                        "price": "R$8,00",
+                        "image": "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEASABIAAD//gAMQXBwbGVN="
+                    },
+                    {
+                        "id": 3,
+                        "name": "Arroz Cristal",
+                        "description": "Pureza em forma de grãos",
+                        "price": "R$13,00",
+                        "image": "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEASABIAAD//gAMQXBwbGVN="
+                    }
+                ]
             }
 
++ Request (application/json)
+
+        {
+            "id": 2
+        }
+        
++ Response 404 (application/json)
+
+    + Body
+    
+            {
+                "error": "Empty cart"
+            }
 ### Alters a product from cart [POST]
 
 + Response 200 (application/json)
