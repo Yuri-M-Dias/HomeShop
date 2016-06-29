@@ -162,37 +162,6 @@ TODO: filtering and sorting
             ]
         }
 
-### Create a New Product on this supermarket [POST]
-
-Creates a new product with a POST request.
-
-+ Request (application/json)
-
-        {
-            "name": "Sucrilhos",
-            "description": "They are yummy.",
-            "price": "R$45,00",
-            "current-stock": 45,
-            "image": "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEASABIAAD//gAMQXBwbGVN="
-        }
-
-+ Response 201 (application/json)
-
-    + Headers
-
-            Location: /markets/1/products/2
-
-    + Body
-
-            {
-                "name": "Sucrilhos",
-                "description": "They are yummy.",
-                "price": "R$45,00",
-                "image": "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEASABIAAD//gAMQXBwbGVN="
-            }
-
-
-
 ## Product detail [/markets/{market_id}/products/{product_id}]
 
 References one product from a market.
@@ -403,4 +372,4 @@ References the collection of all previous carts.
                 "total": "R$11,23",
                 "date": 1466209331
             },
-        }
+        }uto
