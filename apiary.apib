@@ -87,38 +87,6 @@ Returns a list of supermarkets, with links to their images.
                 "products": "/markets/5/products"
             }
         ]
-            
-### Register a new Supermarket [POST]
-
-Registers a new supermarket to make transactions on, with the base image and everything else to be used.
-
-Base64 images shortened, because apiary would complain otherwise.
-
-+ Request (application/json)
-
-        {
-            "name": "Pão de Açucar",
-            "image": "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEASABIAAD//gAMQXBwbGVN",
-            "location": {
-                "lat": "37.7898",
-                "lon": "-122.3942"
-            }
-        }
-
-+ Response 201 (application/json)
-
-    + Headers
-
-            Location: /markets/5
-
-    + Body
-
-            {
-                "id": 5,
-                "name": "Pão de Açucar",
-                "image": "../imgs/markets/bretas.png",
-                "products": "/markets/5/products"
-            }
 
 ## Single Market [/markets/{market_id}]
 
@@ -305,15 +273,15 @@ Register an User
             "endereco": "Rua Leopoldo Magalhães Qd 44 Lt 67",
             "cartao": "24526231234"
         }
-        
+
 + Response 200 (application/json)
 
     + Body
-        
-            { 
+
+            {
                 "status": "Success"
             }
-            
+
 
 # Group Cart and history
 
@@ -335,7 +303,7 @@ The cart for the user specified.
 + Response 200 (application/json)
 
     + Body
-    
+
             {
                 "products": [
                     {
@@ -368,11 +336,11 @@ The cart for the user specified.
         {
             "id": 2
         }
-        
+
 + Response 404 (application/json)
 
     + Body
-    
+
             {
                 "error": "Empty cart"
             }
