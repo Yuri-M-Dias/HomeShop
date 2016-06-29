@@ -250,7 +250,23 @@ Register an User
             {
                 "status": "Success"
             }
+
++ Response 500 (application/json)
+
+    + Body
+
+            {
+                "status": "Error while trying to register an user"
+            }
             
++ Response 409 (application/json)
+
+    + Body
+
+            {
+                "status": "Conflict: Email already registered"
+            }
+
 ## Credit Card Operations [/users/{user_id}/creditcard]
 
 Operations of user's credit card.
@@ -269,9 +285,9 @@ Operations of user's credit card.
             "date": "11/2020",
             "brand": "visa"
         }
-        
+
 + Response 200 (application/json)
-            
+
 
 ### Alter card information [POST]
 
