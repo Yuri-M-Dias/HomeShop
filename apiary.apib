@@ -250,6 +250,52 @@ Register an User
             {
                 "status": "Success"
             }
+            
+## Credit Card Operations [/users/{user_id}/creditcard]
+
+Operations of user's credit card.
+
++ Parameters
+    + user_id (number) - ID of the User in the form of an integer
+
+### Register a credit card [PUT]
+
++ Request (application/json)
+
+        {
+            "name": "LEOPOLDO MAGALHAES",
+            "number": "1111222233334444",
+            "cvs":"123",
+            "date": "11/2020",
+            "brand": "visa"
+        }
+        
++ Response 200 (application/json)
+            
+
+### Alter card information [POST]
+
++ Request (application/json)
+
+        {
+            "name": "LEOPOLDO MAGALHAES",
+            "number": "1111222233334444",
+            "cvs":"231",
+            "date": "11/2020",
+            "brand": "mastercard"
+        }
+
++ Response 200 (application/json)
+
+### Delete credit card [DELETE]
+
++ Request (application/json)
+
+        {
+            "card_number": "1111222233334444"
+        }
+
++ Response 200 (aplicaion/json)
 
 
 # Group Cart and history
