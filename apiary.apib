@@ -258,7 +258,7 @@ Register an User
             {
                 "status": "Error while trying to register an user"
             }
-            
+
 + Response 409 (application/json)
 
     + Body
@@ -415,57 +415,101 @@ References the collection of all previous carts, for a specific user, and a mark
 + Response 200 (application/json)
 
         {
-            "meta": {
-                "page": 1,
-                "start": 0,
-                "limit": 20
-            },
-	    "history": [
-		    {
-			"id": 1,
-			"market": "Extra",
-			"total": "R$54,00",
-			"date": 1466209329
-		    },
-		    {
-			"id": 2,
-			"market": "Marcos",
-			"total": "R$87,92",
-			"date": 1466209330
-		    },
-		    {
-			"id": 3,
-			"market": "Extra",
-			"total": "R$11,23",
-			"date": 1466209331
-		    }
-		]
+                "meta": {
+                        "page": 1,
+                        "start": 0,
+                        "limit": 20
+                },
+                "history": [
+                    {
+                        "id": 14,
+                        "market": "Extra",
+                        "total": "R$54,00",
+                        "date": 1466209329
+                    },
+                    {
+                        "id": 24,
+                        "market": "Marcos",
+                        "total": "R$87,92",
+                        "date": 1466209330
+                    },
+                    {
+                        "id": 39,
+                        "market": "Extra",
+                        "total": "R$11,23",
+                        "date": 1466209331
+                    }
+                ]
         }
 
 + Response 200 (application/json)
 
         {
-            "meta": {
-                "page": 1,
-                "start": 0,
-                "limit": 20
-            },
-	    "market": "Extra",
-	    "history": [
-		    {
-			"id": 1,
-			"total": "R$54,00",
-			"date": 1466209329
-		    },
-		    {
-			"id": 2,
-			"total": "R$87,92",
-			"date": 1466209330
-		    },
-		    {
-			"id": 3,
-			"total": "R$11,23",
-			"date": 1466209331
-		    }
-		]
+                "meta": {
+                        "page": 1,
+                        "start": 0,
+                        "limit": 20
+                },
+                "market": "Extra",
+                "history": [
+                    {
+                        "id": 1,
+                        "total": "R$54,00",
+                        "date": 1466209329
+                    },
+                    {
+                        "id": 2,
+                        "total": "R$87,92",
+                        "date": 1466209330
+                    },
+                    {
+                        "id": 3,
+                        "total": "R$11,23",
+                        "date": 1466209331
+                    }
+                ]
         }
+
+## User Cart History [/users/{user_id}/buyHistory/{history_id}]
+
+References the a single history for that user.
+
++ Parameters
+    + user_id (number) - ID of the User in the form of an integer
+    + history_id (number) - ID of the History found, in the form of an integer
+
+### Get the collection [GET]
+
++ Response 200 (application/json)
+
+        {
+                "meta": {
+                        "page": 1,
+                        "start": 0,
+                        "limit": 20
+                },
+                "market": "Extra",
+                "date": 1466209329,
+                "total": "R$54,00",
+                "products": [
+                    {
+                        "id": 14,
+                        "quantity": 5,
+                        "unitaryPrice": "R$5,12",
+                        "totalUnitary": "R$25,60"
+                    },
+                    {
+                        "id": 16,
+                        "quantity": 1,
+                        "unitaryPrice": "R$5,11",
+                        "totalUnitary": "R$25,00"
+                    },
+                    {
+                        "id": 18,
+                        "quantity": 2,
+                        "unitaryPrice": "R$5,12",
+                        "totalUnitary": "R$25,60"
+                    }
+                ]
+        }
+
