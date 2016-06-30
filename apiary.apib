@@ -269,7 +269,7 @@ Register an User
 
 ## Credit Card Operations [/users/{user_id}/creditcard]
 
-Operations of user's credit card.
+Operations of on user's credit cards.
 
 + Parameters
     + user_id (number) - ID of the User in the form of an integer
@@ -399,14 +399,18 @@ The cart for the user specified.
 
 + Response 200 (application/json)
 
-## Collection Cart history [/users/{user_id}/history]
+## Collection Cart history [/users/{user_id}/buyHistory{?market_id}]
 
-References the collection of all previous carts.
+References the collection of all previous carts, for a specific user, and a market.
 
 + Parameters
     + user_id (number) - ID of the User in the form of an integer
 
-### Get the collection with pagination [GET]
+### Get the collection [GET]
+
++ Parameters
+
+    + market_id (number, optional) - ID of the Market in the form of an integer
 
 + Response 200 (application/json)
 
@@ -416,22 +420,53 @@ References the collection of all previous carts.
                 "start": 0,
                 "limit": 20
             },
-            {
-                "id": 1,
-                "market": "Extra",
-                "total": "R$54,00",
-                "date": 1466209329
+	    "history": [
+		    {
+			"id": 1,
+			"market": "Extra",
+			"total": "R$54,00",
+			"date": 1466209329
+		    },
+		    {
+			"id": 2,
+			"market": "Marcos",
+			"total": "R$87,92",
+			"date": 1466209330
+		    },
+		    {
+			"id": 3,
+			"market": "Extra",
+			"total": "R$11,23",
+			"date": 1466209331
+		    }
+		]
+        }
+
++ Response 200 (application/json)
+
+        {
+            "meta": {
+                "page": 1,
+                "start": 0,
+                "limit": 20
             },
-            {
-                "id": 2,
-                "market": "Pão de Açucar",
-                "total": "R$87,92",
-                "date": 1466209330
-            },
-            {
-                "id": 3,
-                "market": "Extra",
-                "total": "R$11,23",
-                "date": 1466209331
-            },
-        }uto
+	    "market": "Extra",
+	    "history": [
+		    {
+			"id": 1,
+			"total": "R$54,00",
+			"date": 1466209329
+		    },
+		    {
+			"id": 2,
+			"total": "R$87,92",
+			"date": 1466209330
+		    },
+		    {
+			"id": 3,
+			"total": "R$11,23",
+			"date": 1466209331
+		    }
+		]
+        }
+
