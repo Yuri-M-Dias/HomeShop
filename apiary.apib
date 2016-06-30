@@ -269,7 +269,7 @@ Register an User
 
 ## Credit Card Operations [/users/{user_id}/creditcard]
 
-Operations of user's credit card.
+Operations of on user's credit cards.
 
 + Parameters
     + user_id (number) - ID of the User in the form of an integer
@@ -399,14 +399,17 @@ The cart for the user specified.
 
 + Response 200 (application/json)
 
-## Collection Cart history [/users/{user_id}/history]
+## Collection Cart history [/users/{user_id}/history{?market}]
 
-References the collection of all previous carts.
+References the collection of all previous carts, for a specific user, and a market.
 
 + Parameters
     + user_id (number) - ID of the User in the form of an integer
 
-### Get the collection with pagination [GET]
+### Get the collection [GET]
+
++ Parameters
+    + market (optional, number, `false`) ... Set to `true` to remove instead of deactivate
 
 + Response 200 (application/json)
 
@@ -434,4 +437,4 @@ References the collection of all previous carts.
                 "total": "R$11,23",
                 "date": 1466209331
             },
-        }uto
+        }
