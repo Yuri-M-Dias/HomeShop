@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">HomeShop</string>
+    <string name="error_connection">Sem conexão</string>
+    <string name="error_request">Erro na requisição</string>
 </resources>
