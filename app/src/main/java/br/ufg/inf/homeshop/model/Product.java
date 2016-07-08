@@ -2,14 +2,24 @@ package br.ufg.inf.homeshop.model;
 
 public class Product {
 
+    private String name;
     private String description;
     private Double price;
     private String imageUrl;
 
-    public Product(String description, Double price, String imageUrl) {
+    public Product(String name, String description, Double price, String imageUrl) {
+        this.name = name;
         this.description = description;
         this.price = price;
         this.imageUrl = imageUrl;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getDescription() {
