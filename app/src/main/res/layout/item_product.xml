@@ -3,10 +3,11 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:layout_weight=".20"
     android:id="@+id/cardview">
 
     <RelativeLayout android:layout_width="match_parent"
-        android:layout_height="150dp"
+        android:layout_height="80dp"
         android:padding="16dp" >
 
         <ImageView android:layout_width="100dp"
@@ -17,6 +18,7 @@
             android:scaleType="fitCenter"
             android:layout_marginRight="5dp"
             android:adjustViewBounds="true"
+            android:src="@drawable/jesus"
             android:id="@+id/product_img" />
 
         <TextView

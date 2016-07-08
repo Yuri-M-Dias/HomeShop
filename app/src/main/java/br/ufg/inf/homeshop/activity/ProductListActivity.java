@@ -51,7 +51,7 @@ public class ProductListActivity extends AppCompatActivity {
      * Initializes the data that is being used, making the web request.
      */
     private void initializeData() {
-        productList = new ArrayList<>();
+        this.productList = new ArrayList<>();
         productList.add(new Product("Sucrilhos", "Yummy", 45D, "nothing"));
         productList.add(new Product("Sucrilhos", "Yummy", 45D, "nothing"));
         productList.add(new Product("Sucrilhos", "Yummy", 45D, "nothing"));
