@@ -2,6 +2,7 @@ package br.ufg.inf.homeshop.activity;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.widget.GridView;
 
 import br.ufg.inf.homeshop.R;
 
