@@ -27,16 +27,12 @@ public class ProductListActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.product_list);
-
         recyclerView = (RecyclerView) findViewById(R.id.recyclerview);
-
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(linearLayoutManager);
         recyclerView.setHasFixedSize(true);
-
         initializeData();
         initilizeAdapter();
-
     }
 
     /**
@@ -44,6 +40,7 @@ public class ProductListActivity extends AppCompatActivity {
      */
     private void initilizeAdapter() {
         ProductListAdapter adapter = new ProductListAdapter(this.productList);
+
         recyclerView.setAdapter(adapter);
     }
 
@@ -56,10 +53,27 @@ public class ProductListActivity extends AppCompatActivity {
         productList.add(new Product("Sucrilhos", "Yummy", 45D, "nothing"));
         productList.add(new Product("Sucrilhos", "Yummy", 45D, "nothing"));
         productList.add(new Product("Sucrilhos", "Yummy", 45D, "nothing"));
+        productList.add(new Product("Sucrilhos", "Yummy", 45D, "nothing"));
+        productList.add(new Product("Sucrilhos", "Yummy", 45D, "nothing"));
+        productList.add(new Product("Sucrilhos", "Yummy", 45D, "nothing"));
+        productList.add(new Product("Sucrilhos", "Yummy", 45D, "nothing"));
+        productList.add(new Product("Sucrilhos", "Yummy", 45D, "nothing"));
+        productList.add(new Product("Sucrilhos", "Yummy", 45D, "nothing"));
+        productList.add(new Product("Sucrilhos", "Yummy", 45D, "nothing"));
+        productList.add(new Product("Sucrilhos", "Yummy", 45D, "nothing"));
+        productList.add(new Product("Sucrilhos", "Yummy", 45D, "nothing"));
+        productList.add(new Product("Sucrilhos", "Yummy", 45D, "nothing"));
+        productList.add(new Product("Sucrilhos", "Yummy", 45D, "nothing"));
+        productList.add(new Product("Sucrilhos", "Yummy", 45D, "nothing"));
+        productList.add(new Product("Sucrilhos", "Yummy", 45D, "nothing"));
+        productList.add(new Product("Sucrilhos", "Yummy", 45D, "nothing"));
+        productList.add(new Product("Sucrilhos", "Yummy", 45D, "nothing"));
+        productList.add(new Product("Sucrilhos", "Yummy", 45D, "nothing"));
     }
 
     public void detailItem(View view) {
         ImageButton button = (ImageButton) view;
+        //Listview
         //Pega o item que foi clicado e cria a intent para o detail... mas como?
     }
 
