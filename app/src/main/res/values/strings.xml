@@ -2,4 +2,12 @@
     <string name="app_name">HomeShop</string>
     <string name="error_connection">Sem conexão</string>
     <string name="error_request">Erro na requisição</string>
+    <string name="nome">Nome</string>
+    <string name="email">Email</string>
+    <string name="endereco">Endereço</string>
+    <string name="cartao_credito">Cartão de Crédito</string>
+    <string name="senha">Senha</string>
+    <string name="confirmarSenha">Confirmar Senha</string>
+    <string name="botaoCadastrarUsuario">Cadastrar</string>
+    <string name="cadastro">Cadastro</string>
 </resources>
