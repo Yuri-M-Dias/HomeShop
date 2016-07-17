@@ -65,7 +65,12 @@ public abstract class WebTaskBase extends AsyncTask<Void, Void, Void> {
 
     private void doRegularCall() {
         OkHttpClient client = new OkHttpClient();
-        RequestBody body = RequestBody.create(JSON, getRequestBody());
+        RequestBody body;
+        if (method.equals(WebTaskBase.GET_METHOD)){
+            body = null;
+        } else {
+            body = RequestBody.create(JSON, getRequestBody());
+        }
 
         client.setConnectTimeout(TIMEOUT, TimeUnit.SECONDS);
         client.setReadTimeout(TIMEOUT, TimeUnit.SECONDS);

@@ -47,8 +47,8 @@ public class SupermarketAdapter extends BaseAdapter {
         ImageView imageView = new ImageView(mContext);
         Picasso.with(mContext)
             .load(currentMarket.getImage())
-            .placeholder(R.drawable.icon_loading)
-            .error(R.drawable.icon_error)
+            .placeholder(R.drawable.icon_forward)
+            .error(R.drawable.icon_forward)
             .resize(400, 400)
             .centerCrop()
             .into(imageView);

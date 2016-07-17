@@ -5,10 +5,10 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
-import org.json.JSONObject;
 
 import br.ufg.inf.homeshop.R;
 import br.ufg.inf.homeshop.model.User;
@@ -57,21 +57,29 @@ public class RegisterUserActivity extends AppCompatActivity {
             user.setEmail(email);
             user.setSenha(senha);
             showProgress(true);
-            WebTaskUser userTask = new WebTaskUser(this, "login", user, WebTaskBase.POST_METHOD);
+            WebTaskUser userTask = new WebTaskUser(this, "user", user, WebTaskBase.PUT_METHOD);
             userTask.execute();
         }
     }
 
     @Subscribe
-    public void onEvent(JSONObject json) {
+    public void onEvent(User user) {
         showProgress(false);
         Intent activity = new Intent(this, SupermarketActivity.class);
+        activity.putExtra("userId", user.getId());
+        activity.putExtra("userEmail", user.getEmail());
+
+        showToast("Usuário cadastrado com sucesso.");
         startActivity(activity);
     }
 
     @Subscribe
     public void onEvent(Error error) {
         showProgress(false);
+        String message = "Ocorreu uma falha no cadastro";
+        showToast(message);
+        Intent activity = new Intent(this, SupermarketActivity.class);
+        startActivity(activity);
     }
 
     private void showProgress(boolean showProgress) {
@@ -93,6 +101,13 @@ public class RegisterUserActivity extends AppCompatActivity {
 
     private EditText getEmailView() {
         return getEditText(R.id.email);
+    }
+
+    private void showToast(String message){
+        int duration = Toast.LENGTH_SHORT;
+        Toast toast = Toast.makeText(this, message, duration);
+        toast.show();
+
     }
 
 }

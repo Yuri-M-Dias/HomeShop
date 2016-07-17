@@ -5,10 +5,7 @@ import android.content.Context;
 import com.google.gson.Gson;
 
 import org.greenrobot.eventbus.EventBus;
-import org.json.JSONException;
-import org.json.JSONObject;
 
-import br.ufg.inf.homeshop.R;
 import br.ufg.inf.homeshop.model.User;
 
 public class WebTaskUser extends WebTaskBase {
@@ -22,19 +19,22 @@ public class WebTaskUser extends WebTaskBase {
 
     @Override
     public void handleResponse(String response) {
-        JSONObject jsonObject = null;
-        try {
-            jsonObject = new JSONObject(response);
-            EventBus.getDefault().post(jsonObject);
-        } catch (JSONException e) {
-            EventBus.getDefault().post(new Error(getContext().getString(R.string.invalid_server_response)));
-            e.printStackTrace();
+        if ("".equals(response) || response == null) {
+            EventBus.getDefault().post(true);
+        } else {
+            Gson gson = new Gson();
+            User user = gson.fromJson(response, User.class);
+            EventBus.getDefault().post(user);
         }
     }
 
     @Override
     public String getRequestBody() {
-        Gson gson = new Gson();
-        return gson.toJson(user);
+        if (user != null) {
+            Gson gson = new Gson();
+            return gson.toJson(user);
+        } else {
+            return "";
+        }
     }
 }
