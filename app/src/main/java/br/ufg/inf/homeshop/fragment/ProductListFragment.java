@@ -1,5 +1,7 @@
 package br.ufg.inf.homeshop.fragment;
 
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -13,12 +15,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.ufg.inf.homeshop.R;
+import br.ufg.inf.homeshop.activity.MainActivity;
+import br.ufg.inf.homeshop.activity.SupermarketActivity;
 import br.ufg.inf.homeshop.adapter.ProductListAdapter;
 import br.ufg.inf.homeshop.model.Product;
 
 public class ProductListFragment extends Fragment {
+
     private List<Product> productList;
     private RecyclerView recyclerView;
+    private Long marketId;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -30,6 +36,14 @@ public class ProductListFragment extends Fragment {
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         recyclerView = (RecyclerView) getActivity().findViewById(R.id.product_list_recyclerview);
+        SharedPreferences settings = getContext().getSharedPreferences(MainActivity.PREFERENCES_NAME, 0);
+        marketId = settings.getLong("marketId", -1);
+        if (marketId == -1) {
+            //Não tem mercado setado, volta para a tela de seleção.
+            Intent intent = new Intent(getActivity(), SupermarketActivity.class);
+            startActivity(intent);
+        }
+        //TODO: fazer a request e pegar a lista de produtos desse supermercado.
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
         recyclerView.setLayoutManager(linearLayoutManager);
         recyclerView.setHasFixedSize(true);

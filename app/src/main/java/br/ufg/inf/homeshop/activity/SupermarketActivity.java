@@ -14,7 +14,7 @@ import java.util.List;
 import br.ufg.inf.homeshop.R;
 import br.ufg.inf.homeshop.adapter.SupermarketAdapter;
 import br.ufg.inf.homeshop.model.Market;
-import br.ufg.inf.homeshop.services.WebTaskSupermarket;
+import br.ufg.inf.homeshop.services.WebTaskSupermarketList;
 
 public class SupermarketActivity extends AppCompatActivity {
 
@@ -29,7 +29,7 @@ public class SupermarketActivity extends AppCompatActivity {
         progressView = findViewById(R.id.supermarkets_progress);
         gridView = (GridView) findViewById(R.id.grid_view);
         showProgress(true);
-        WebTaskSupermarket taskSupermarket = new WebTaskSupermarket(this);
+        WebTaskSupermarketList taskSupermarket = new WebTaskSupermarketList(this);
         taskSupermarket.execute();
     }
 

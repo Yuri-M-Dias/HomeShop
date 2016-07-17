@@ -1,6 +1,8 @@
 package br.ufg.inf.homeshop.adapter;
 
 import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +15,7 @@ import com.squareup.picasso.Picasso;
 import java.util.List;
 
 import br.ufg.inf.homeshop.R;
+import br.ufg.inf.homeshop.activity.MainActivity;
 import br.ufg.inf.homeshop.holder.MarketHolder;
 import br.ufg.inf.homeshop.model.Market;
 
@@ -51,7 +54,7 @@ public class SupermarketAdapter extends BaseAdapter {
         convertView = inflater.inflate(R.layout.market_item_tile, parent, false);
         MarketHolder marketHolder = new MarketHolder(convertView);
         marketHolder.picture = (ImageView) convertView.findViewById(R.id.tile_picture);
-        Market currentMarket = superMarkets.get(position);
+        final Market currentMarket = superMarkets.get(position);
         ImageView imageView = marketHolder.picture;
         Picasso.with(mContext)
             .load(currentMarket.getImage())
@@ -63,8 +66,13 @@ public class SupermarketAdapter extends BaseAdapter {
         convertView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //Pega qual supermercado clicou, e cria intent pro menu principal passando o id dele.
                 Toast.makeText(mContext, "Clicando no item: " + position, Toast.LENGTH_LONG).show();
+                SharedPreferences settings = mContext.getSharedPreferences(MainActivity.PREFERENCES_NAME, 0);
+                SharedPreferences.Editor editor = settings.edit();
+                editor.putLong("marketId", currentMarket.getId());
+                editor.apply();
+                Intent intent = new Intent(mContext, MainActivity.class);
+                mContext.startActivity(intent);
             }
         });
         return convertView;

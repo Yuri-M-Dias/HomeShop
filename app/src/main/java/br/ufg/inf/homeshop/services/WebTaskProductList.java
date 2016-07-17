@@ -3,23 +3,17 @@ package br.ufg.inf.homeshop.services;
 import android.content.Context;
 
 import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
 
 import org.greenrobot.eventbus.EventBus;
-
-import java.lang.reflect.Type;
-import java.util.ArrayList;
-import java.util.List;
 
 import br.ufg.inf.homeshop.R;
 import br.ufg.inf.homeshop.model.Market;
 
-public class WebTaskSupermarket extends WebTaskBase {
+public class WebTaskProductList extends WebTaskBase {
+    private static final String SERVICE_URL = "markets/";
 
-    private static String SERVICE_URL = "markets";
-
-    public WebTaskSupermarket(Context context) {
-        super(context, SERVICE_URL, WebTaskBase.GET_METHOD);
+    public WebTaskProductList(Context context, String marketId) {
+        super(context, SERVICE_URL + marketId + "/products", WebTaskBase.GET_METHOD);
     }
 
     @Override
@@ -28,11 +22,10 @@ public class WebTaskSupermarket extends WebTaskBase {
             EventBus.getDefault().post(new Error(getContext()
                 .getString(R.string.invalid_server_response)));
         }
-        Type typeToken = new TypeToken<List<Market>>(){}.getType();
         Gson gson = new Gson();
         try {
-            ArrayList<Market> markets = gson.fromJson(response, typeToken);
-            EventBus.getDefault().post(markets);
+            Market market = gson.fromJson(response, Market.class);
+            EventBus.getDefault().post(market);
         } catch (Exception e) {//TODO: REMOVE ME
             //TODO: erros no Gson?
             EventBus.getDefault().post(new Error(getContext()
@@ -42,7 +35,7 @@ public class WebTaskSupermarket extends WebTaskBase {
 
     @Override
     public String getRequestBody() {
-        return "";
+        return null;
     }
 
 }
