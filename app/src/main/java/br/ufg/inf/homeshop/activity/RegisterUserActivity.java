@@ -66,7 +66,6 @@ public class RegisterUserActivity extends AppCompatActivity {
     public void onEvent(JSONObject json) {
         showProgress(false);
         Intent activity = new Intent(this, SupermarketActivity.class);
-        activity.putExtra("message", "olá");
         startActivity(activity);
     }
 

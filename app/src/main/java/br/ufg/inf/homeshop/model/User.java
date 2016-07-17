@@ -2,11 +2,21 @@ package br.ufg.inf.homeshop.model;
 
 public class User {
 
+    private String id;
     private String nome;
     private String cpf;
     private String email;
     private String endereco;
     private String senha;
+    private String numeroCartao;
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
 
     public String getNome() {
         return nome;
@@ -46,5 +56,13 @@ public class User {
 
     public void setSenha(String senha) {
         this.senha = senha;
+    }
+
+    public String getNumeroCartao() {
+        return numeroCartao;
+    }
+
+    public void setNumeroCartao(String numeroCartao) {
+        this.numeroCartao = numeroCartao;
     }
 }

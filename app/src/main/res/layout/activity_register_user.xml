@@ -63,7 +63,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="20dp"
-            android:background="#000"
+            android:background="@android:color/black"
             android:onClick="cadastrarUsuario"
             android:text="@string/botaoCadastrarUsuario"
             android:textColor="@android:color/white" />

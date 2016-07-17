@@ -2,7 +2,6 @@
     <string name="app_name">HomeShop</string>
     <string name="error_connection">Sem conexão</string>
     <string name="error_request">Erro na requisição</string>
-    <string name="nome">Nome</string>
     <string name="email">Email</string>
     <string name="endereco">Endereço</string>
     <string name="cartao_credito">Cartão de Crédito</string>
@@ -11,4 +10,7 @@
     <string name="botaoCadastrarUsuario">Cadastrar</string>
     <string name="cadastro">Cadastro</string>
     <string name="invalid_server_response">Resposta inválida do servidor</string>
+    <string name="atualizar">Atualizar</string>
+    <string name="nome_completo">Nome Completo</string>
+    <string name="cpf">CPF</string>
 </resources>
