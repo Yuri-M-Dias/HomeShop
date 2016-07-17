@@ -12,6 +12,7 @@ import org.json.JSONObject;
 
 import br.ufg.inf.homeshop.R;
 import br.ufg.inf.homeshop.model.User;
+import br.ufg.inf.homeshop.services.WebTaskBase;
 import br.ufg.inf.homeshop.services.WebTaskUser;
 
 public class PerfilActivity extends AppCompatActivity {
@@ -56,7 +57,7 @@ public class PerfilActivity extends AppCompatActivity {
             user.setEmail(email);
             user.setSenha(senha);
             showProgress(true);
-            WebTaskUser userTask = new WebTaskUser(this, "login", user);
+            WebTaskUser userTask = new WebTaskUser(this, "login", user, WebTaskBase.POST_METHOD);
             userTask.execute();
         }
     }
@@ -67,6 +68,11 @@ public class PerfilActivity extends AppCompatActivity {
         Intent activity = new Intent(this, SupermarketActivity.class);
         activity.putExtra("message", "olá");
         startActivity(activity);
+    }
+
+    @Subscribe
+    public void onEvent(Error error) {
+        showProgress(false);
     }
 
     private void showProgress(boolean showProgress) {

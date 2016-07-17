@@ -27,6 +27,11 @@ public abstract class WebTaskBase extends AsyncTask<Void, Void, Void> {
     private static int TIMEOUT = 15;
     private static String BASE_URL = "http://private-3c4e5-homeshop.apiary-mock.com/";
 
+    public static String POST_METHOD = "POST";
+    public static String GET_METHOD = "GET";
+    public static String DELETE_METHOD = "DELETE";
+    public static String PUT_METHOD = "PUT";
+
     private String serviceURL;
     private Context context;
     private Error error;
@@ -34,14 +39,15 @@ public abstract class WebTaskBase extends AsyncTask<Void, Void, Void> {
     private String image;
     private int responseCode;
     private boolean silent;
-
+    private String method;
 
     public static final MediaType JSON
         = MediaType.parse("application/json; charset=utf-8");
 
-    public WebTaskBase(Context context, String serviceURL) {
+    public WebTaskBase(Context context, String serviceURL, String method) {
         this.serviceURL = serviceURL;
         this.context = context;
+        this.method = method;
     }
 
     @Override
@@ -66,7 +72,7 @@ public abstract class WebTaskBase extends AsyncTask<Void, Void, Void> {
 
         Request request = new Request.Builder()
             .url(BASE_URL + serviceURL)
-            .post(body)
+            .method(method, body)
             .build();
 
         Response response = null;
