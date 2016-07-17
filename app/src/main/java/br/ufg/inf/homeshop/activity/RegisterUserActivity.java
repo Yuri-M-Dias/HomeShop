@@ -15,7 +15,7 @@ import br.ufg.inf.homeshop.model.User;
 import br.ufg.inf.homeshop.services.WebTaskBase;
 import br.ufg.inf.homeshop.services.WebTaskUser;
 
-public class PerfilActivity extends AppCompatActivity {
+public class RegisterUserActivity extends AppCompatActivity {
 
     private EditText passwordView;
     private EditText confirmationPasswordView;
