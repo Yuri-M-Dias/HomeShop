@@ -57,9 +57,7 @@ public abstract class WebTaskBase extends AsyncTask<Void, Void, Void> {
             responseString = null;
             return null;
         }
-
         doRegularCall();
-
         return null;
     }
 
@@ -71,15 +69,12 @@ public abstract class WebTaskBase extends AsyncTask<Void, Void, Void> {
         } else {
             body = RequestBody.create(JSON, getRequestBody());
         }
-
         client.setConnectTimeout(TIMEOUT, TimeUnit.SECONDS);
         client.setReadTimeout(TIMEOUT, TimeUnit.SECONDS);
-
         Request request = new Request.Builder()
             .url(BASE_URL + serviceURL)
             .method(method, body)
             .build();
-
         Response response = null;
         try {
             response = client.newCall(request).execute();

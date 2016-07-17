@@ -3,14 +3,16 @@ package br.ufg.inf.homeshop.services;
 import android.content.Context;
 
 import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
 import org.greenrobot.eventbus.EventBus;
-import org.json.JSONException;
-import org.json.JSONObject;
 
+import java.lang.reflect.Type;
 import java.util.ArrayList;
+import java.util.List;
 
 import br.ufg.inf.homeshop.R;
+import br.ufg.inf.homeshop.model.Market;
 
 public class WebTaskSupermarket extends WebTaskBase {
 
@@ -22,16 +24,14 @@ public class WebTaskSupermarket extends WebTaskBase {
 
     @Override
     public void handleResponse(String response) {
-        JSONObject jsonObject = null;
-        try {
-            jsonObject = new JSONObject(response);
-            Gson gson = new Gson();
-            gson.fromJson(jsonObject.toString(), ArrayList.class);
-            EventBus.getDefault().post(jsonObject);
-        } catch (JSONException e) {
-            EventBus.getDefault().post(new Error(getContext().getString(R.string.invalid_server_response)));
-            e.printStackTrace();
+        if (response == null || response.isEmpty()){
+            EventBus.getDefault().post(new Error(getContext()
+                .getString(R.string.invalid_server_response)));
         }
+        Type typeToken = new TypeToken<List<Market>>(){}.getType();
+        Gson gson = new Gson();
+        ArrayList<Market> markets = gson.fromJson(response, typeToken);
+        EventBus.getDefault().post(markets);
     }
 
     @Override
