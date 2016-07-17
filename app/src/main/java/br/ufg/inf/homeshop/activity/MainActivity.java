@@ -5,13 +5,10 @@ import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.Menu;
-import android.view.View;
 import android.widget.ImageButton;
-import android.widget.Toast;
 
 import br.ufg.inf.homeshop.R;
-import br.ufg.inf.homeshop.adapter.FragmentAdapter;
+import br.ufg.inf.homeshop.adapter.ViewPagerAdapter;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -26,7 +23,7 @@ public class MainActivity extends AppCompatActivity {
 
         final ViewPager viewPager = (ViewPager) findViewById(R.id.viewpager);
 
-        final FragmentAdapter adapter = new FragmentAdapter(getSupportFragmentManager(), 2);
+        final ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager(), 2);
         viewPager.setAdapter(adapter);
 
 
