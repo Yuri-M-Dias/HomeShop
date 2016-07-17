@@ -26,7 +26,7 @@ public class RegisterUserActivity extends AppCompatActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setTitle(R.string.cadastro);
-        setContentView(R.layout.activity_perfil);
+        setContentView(R.layout.activity_register_user);
         mRegisterForm = findViewById(R.id.register_form);
         mProgressView = findViewById(R.id.register_progress);
     }
