@@ -60,6 +60,17 @@ public class ProductListFragment extends Fragment {
         productList.add(new Product("Sucrilhos", "Yummy", 45D, "nothing"));
         productList.add(new Product("Sucrilhos", "Yummy", 45D, "nothing"));
         productList.add(new Product("Sucrilhos", "Yummy", 45D, "nothing"));
+        productList.add(new Product("Sucrilhos", "Yummy", 45D, "nothing"));
+        productList.add(new Product("Sucrilhos", "Yummy", 45D, "nothing"));
+        productList.add(new Product("Sucrilhos", "Yummy", 45D, "nothing"));
+        productList.add(new Product("Sucrilhos", "Yummy", 45D, "nothing"));
+        productList.add(new Product("Sucrilhos", "Yummy", 45D, "nothing"));
+        productList.add(new Product("Sucrilhos", "Yummy", 45D, "nothing"));
+        productList.add(new Product("Sucrilhos", "Yummy", 45D, "nothing"));
+        productList.add(new Product("Sucrilhos", "Yummy", 45D, "nothing"));
+        productList.add(new Product("Sucrilhos", "Yummy", 45D, "nothing"));
+        productList.add(new Product("Sucrilhos", "Yummy", 45D, "nothing"));
+        productList.add(new Product("Sucrilhos", "Yummy", 45D, "nothing"));
     }
 
     public void detailItem(View view) {
