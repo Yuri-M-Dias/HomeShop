@@ -1,22 +1,26 @@
 package br.ufg.inf.homeshop.adapter;
 
 import android.content.Context;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.GridView;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
 import br.ufg.inf.homeshop.R;
+import br.ufg.inf.homeshop.holder.MarketHolder;
 import br.ufg.inf.homeshop.model.Market;
 
 public class SupermarketAdapter extends BaseAdapter {
 
     private Context mContext;
+
+    private LayoutInflater inflater;
 
     private List<Market> superMarkets;
 
@@ -24,6 +28,7 @@ public class SupermarketAdapter extends BaseAdapter {
     public SupermarketAdapter(Context c, List<Market> superMarkets) {
         this.superMarkets = superMarkets;
         mContext = c;
+        inflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
 
     @Override
@@ -43,28 +48,26 @@ public class SupermarketAdapter extends BaseAdapter {
 
     @Override
     public View getView(final int position, View convertView, ViewGroup parent) {
+        convertView = inflater.inflate(R.layout.market_item_tile, parent, false);
+        MarketHolder marketHolder = new MarketHolder(convertView);
+        marketHolder.picture = (ImageView) convertView.findViewById(R.id.tile_picture);
         Market currentMarket = superMarkets.get(position);
-        ImageView imageView = new ImageView(mContext);
+        ImageView imageView = marketHolder.picture;
         Picasso.with(mContext)
             .load(currentMarket.getImage())
             .placeholder(R.drawable.icon_loading)
             .error(R.drawable.icon_error)
             .resize(400, 400)
-            .centerCrop()
+            .centerInside()
             .into(imageView);
-        //Width, Height
-        GridView.LayoutParams params = new GridView
-            .LayoutParams(GridView.LayoutParams.MATCH_PARENT, GridView.LayoutParams.WRAP_CONTENT);
-        imageView.setLayoutParams(params);
-        imageView.setOnClickListener(new View.OnClickListener() {
+        convertView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ImageView view = (ImageView) v;
                 //Pega qual supermercado clicou, e cria intent pro menu principal passando o id dele.
-                System.out.println("Clicando no item: " + position);
+                Toast.makeText(mContext, "Clicando no item: " + position, Toast.LENGTH_LONG).show();
             }
         });
-        return imageView;
+        return convertView;
     }
 
 }

@@ -16,28 +16,20 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        //Startar somente se tiver um ID de supermercado para fazer requests...
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         toolbar.setTitle("HomeShop");
         setSupportActionBar(toolbar);
-
         final ViewPager viewPager = (ViewPager) findViewById(R.id.viewpager);
-
         final ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager(), 2);
         viewPager.setAdapter(adapter);
-
-
         TabLayout tabs = (TabLayout) findViewById(R.id.tabs);
         tabs.addTab(tabs.newTab());
         tabs.addTab(tabs.newTab());
         tabs.setupWithViewPager(viewPager);
-
         tabs.getTabAt(0).setText("Produto");
         tabs.getTabAt(1).setText("Meu Carrinho");
-
         viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabs));
-
-
         tabs.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
@@ -54,9 +46,7 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
-
         ImageButton imageButton = new ImageButton(getApplicationContext());
-
     }
 
 

@@ -1,9 +1,7 @@
 package br.ufg.inf.homeshop.fragment;
 
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -28,24 +26,18 @@ public class ProductListFragment extends Fragment {
         return inflater.inflate(R.layout.product_list, container, false);
     }
 
-
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         recyclerView = (RecyclerView) getActivity().findViewById(R.id.product_list_recyclerview);
-
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
         recyclerView.setLayoutManager(linearLayoutManager);
         recyclerView.setHasFixedSize(true);
-
         initializeData();
         initilizeAdapter();
-
     }
 
     //Initilizes the adapter, effectively putting the elements on the screen.
-
     private void initilizeAdapter() {
         ProductListAdapter adapter = new ProductListAdapter(this.productList);
         recyclerView.setAdapter(adapter);

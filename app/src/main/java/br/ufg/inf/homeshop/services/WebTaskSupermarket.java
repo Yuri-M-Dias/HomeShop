@@ -30,8 +30,14 @@ public class WebTaskSupermarket extends WebTaskBase {
         }
         Type typeToken = new TypeToken<List<Market>>(){}.getType();
         Gson gson = new Gson();
-        ArrayList<Market> markets = gson.fromJson(response, typeToken);
-        EventBus.getDefault().post(markets);
+        try {
+            ArrayList<Market> markets = gson.fromJson(response, typeToken);
+            EventBus.getDefault().post(markets);
+        } catch (Exception e) {//TODO: REMOVE ME
+            //TODO: erros no Gson?
+            EventBus.getDefault().post(new Error(getContext()
+                .getString(R.string.invalid_server_response)));
+        }
     }
 
     @Override

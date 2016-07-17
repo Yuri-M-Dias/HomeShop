@@ -9,9 +9,6 @@ import android.widget.TextView;
 
 import br.ufg.inf.homeshop.R;
 
-/**
- * Created by gabri_000 on 16/07/2016.
- */
 public class ProductHolder extends RecyclerView.ViewHolder{
     public CardView cv;
     public ImageView photo;

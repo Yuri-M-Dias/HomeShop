@@ -1,6 +1,7 @@
 package br.ufg.inf.homeshop.adapter;
 
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,7 +18,7 @@ import br.ufg.inf.homeshop.model.Product;
  */
 public class ProductListAdapter extends RecyclerView.Adapter<ProductHolder>{
 
-    List<Product> products;
+    private List<Product> products;
 
     public ProductListAdapter(List<Product> products) {
         this.products = products;
@@ -30,6 +31,7 @@ public class ProductListAdapter extends RecyclerView.Adapter<ProductHolder>{
 
     @Override
     public ProductHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
+        Log.d("homeshop", "Create View Holder");
         View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout
             .item_product, viewGroup, false);
         ProductHolder productHolder = new ProductHolder(view);
