@@ -7,37 +7,33 @@ import android.widget.BaseAdapter;
 import android.widget.GridView;
 import android.widget.ImageView;
 
-import br.ufg.inf.homeshop.R;
+import com.squareup.picasso.Picasso;
 
-/**
- * Created by gabri_000 on 07/07/2016.
- */
+import java.util.List;
+
+import br.ufg.inf.homeshop.R;
+import br.ufg.inf.homeshop.model.Market;
+
 public class SupermarketAdapter extends BaseAdapter {
+
     private Context mContext;
 
-    // Keep all Images in array
-    public Integer[] mThumbIds = {
-        R.drawable.extralogo, R.drawable.carrefourlogo,
-        R.drawable.bretaslogo, R.drawable.liderlogo,
-        R.drawable.wallmartlogo, R.drawable.maxxilogo,
-        R.drawable.moreriralogo, R.drawable.novosucessologo,
-        R.drawable.paodeacucarlogo, R.drawable.povologo,
-        R.drawable.taticologo, R.drawable.tododialogo
-    };
+    private List<Market> superMarkets;
 
     // Constructor
-    public SupermarketAdapter(Context c) {
+    public SupermarketAdapter(Context c, List<Market> superMarkets) {
+        this.superMarkets = superMarkets;
         mContext = c;
     }
 
     @Override
     public int getCount() {
-        return mThumbIds.length;
+        return superMarkets.size();
     }
 
     @Override
     public Object getItem(int position) {
-        return mThumbIds[position];
+        return superMarkets.get(position);
     }
 
     @Override
@@ -46,15 +42,29 @@ public class SupermarketAdapter extends BaseAdapter {
     }
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
+    public View getView(final int position, View convertView, ViewGroup parent) {
+        Market currentMarket = superMarkets.get(position);
         ImageView imageView = new ImageView(mContext);
-        imageView.setImageResource(mThumbIds[position]);
-        imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
-        imageView.setLayoutParams(new GridView.LayoutParams(550, 550));
-        //ViewGroup.LayoutParams source = new ViewGroup.LayoutParams();
-
+        Picasso.with(mContext)
+            .load(currentMarket.getImage())
+            .placeholder(R.drawable.icon_loading)
+            .error(R.drawable.icon_error)
+            .resize(400, 400)
+            .centerCrop()
+            .into(imageView);
+        //Width, Height
+        GridView.LayoutParams params = new GridView
+            .LayoutParams(GridView.LayoutParams.MATCH_PARENT, GridView.LayoutParams.WRAP_CONTENT);
+        imageView.setLayoutParams(params);
+        imageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ImageView view = (ImageView) v;
+                //Pega qual supermercado clicou, e cria intent pro menu principal passando o id dele.
+                System.out.println("Clicando no item: " + position);
+            }
+        });
         return imageView;
     }
-
 
 }

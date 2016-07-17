@@ -6,13 +6,22 @@ public class Market {
 
     private Long id;
     private String name;
-    private String header;
+    private String image;
     private Location location;
+    private String products;
 
-    public Market(Long id, String name, String header, Location location) {
+    public Market() {
+    }
+
+    public Market(Long id, String image) {
+        this.id = id;
+        this.image = image;
+    }
+
+    public Market(Long id, String name, String image, Location location) {
         this.id = id;
         this.name = name;
-        this.header = header;
+        this.image = image;
         this.location = location;
     }
 
@@ -32,12 +41,12 @@ public class Market {
         this.name = name;
     }
 
-    public String getHeader() {
-        return header;
+    public String getImage() {
+        return image;
     }
 
-    public void setHeader(String header) {
-        this.header = header;
+    public void setImage(String image) {
+        this.image = image;
     }
 
     public Location getLocation() {
@@ -47,4 +56,13 @@ public class Market {
     public void setLocation(Location location) {
         this.location = location;
     }
+
+    public String getProducts() {
+        return products;
+    }
+
+    public void setProducts(String products) {
+        this.products = products;
+    }
+
 }

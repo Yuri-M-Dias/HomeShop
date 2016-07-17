@@ -2,14 +2,25 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent" android:layout_height="match_parent">
 
-    <GridView xmlns:android="http://schemas.android.com/apk/res/android"
-        android:id="@+id/grid_view"
+    <ProgressBar
+        android:id="@+id/supermarkets_progress"
+        style="?android:attr/progressBarStyleLarge"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:numColumns="auto_fit"
-        android:columnWidth="120dp"
-        android:horizontalSpacing="10dp"
-        android:verticalSpacing="10dp"
+        android:layout_marginBottom="8dp"
+        android:visibility="gone"
+        android:background="@drawable/progress"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"/>
+
+    <GridView xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/grid_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:numColumns="2"
+        android:columnWidth="150dp"
+        android:horizontalSpacing="1dp"
+        android:verticalSpacing="1dp"
         android:gravity="center"
         android:stretchMode="columnWidth" >
 
