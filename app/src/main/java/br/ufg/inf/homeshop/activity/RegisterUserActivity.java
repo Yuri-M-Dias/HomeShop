@@ -107,7 +107,6 @@ public class RegisterUserActivity extends AppCompatActivity {
         int duration = Toast.LENGTH_SHORT;
         Toast toast = Toast.makeText(this, message, duration);
         toast.show();
-
     }
 
 }
