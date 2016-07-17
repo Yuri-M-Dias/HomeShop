@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.widget.GridView;
 
 import br.ufg.inf.homeshop.R;
+import br.ufg.inf.homeshop.adapter.SupermarketAdapter;
 
 public class SupermarketActivity extends AppCompatActivity {
     @Override

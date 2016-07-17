@@ -14,9 +14,6 @@ import br.ufg.inf.homeshop.R;
 import br.ufg.inf.homeshop.adapter.ProductListAdapter;
 import br.ufg.inf.homeshop.model.Product;
 
-/**
- * Created by yuri on 07/07/16.
- */
 public class ProductListActivity extends AppCompatActivity {
 
     private List<Product> productList;
@@ -27,12 +24,16 @@ public class ProductListActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.product_list);
-        recyclerView = (RecyclerView) findViewById(R.id.recyclerview);
+
+        recyclerView = (RecyclerView) findViewById(R.id.product_list_recyclerview);
+
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(linearLayoutManager);
         recyclerView.setHasFixedSize(true);
+
         initializeData();
         initilizeAdapter();
+
     }
 
     /**
@@ -40,7 +41,6 @@ public class ProductListActivity extends AppCompatActivity {
      */
     private void initilizeAdapter() {
         ProductListAdapter adapter = new ProductListAdapter(this.productList);
-
         recyclerView.setAdapter(adapter);
     }
 

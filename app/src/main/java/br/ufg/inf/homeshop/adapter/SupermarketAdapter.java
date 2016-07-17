@@ -1,4 +1,4 @@
-package br.ufg.inf.homeshop.activity;
+package br.ufg.inf.homeshop.adapter;
 
 import android.content.Context;
 import android.view.View;
@@ -22,7 +22,7 @@ public class SupermarketAdapter extends BaseAdapter {
         R.drawable.wallmartlogo, R.drawable.maxxilogo,
         R.drawable.moreriralogo, R.drawable.novosucessologo,
         R.drawable.paodeacucarlogo, R.drawable.povologo,
-        R.drawable.taticologo, R.drawable.tododialogo,
+        R.drawable.taticologo, R.drawable.tododialogo
     };
 
     // Constructor
