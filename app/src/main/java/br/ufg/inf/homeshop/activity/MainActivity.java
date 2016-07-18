@@ -124,6 +124,12 @@ public class MainActivity extends AppCompatActivity {
         viewPager.setVisibility(showProgress ? View.GONE : View.VISIBLE);
     }
 
+
+    public void readCode(View view) {
+        Intent intent = new Intent(this, QRCodeActivity.class);
+        startActivity(intent);
+    }
+
 //    @Override
 //    public boolean onCreateOptionsMenu(Menu menu) {
 //        getMenuInflater().inflate(R.menu.menu_main, menu);
