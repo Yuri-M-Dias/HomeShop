@@ -22,6 +22,8 @@
         <activity android:name=".activity.RegisterUserActivity" />
         <activity android:name=".activity.MainActivity" />
         <activity android:name=".activity.QRCodeActivity" />
+        <activity android:name=".activity.DetailActivity" />
+
     </application>
 
 </manifest>

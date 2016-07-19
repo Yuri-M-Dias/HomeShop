@@ -14,11 +14,11 @@ import java.util.List;
 
 import br.ufg.inf.homeshop.R;
 import br.ufg.inf.homeshop.adapter.MyCartAdapter;
-import br.ufg.inf.homeshop.adapter.ProductListAdapter;
+import br.ufg.inf.homeshop.model.CartItem;
 import br.ufg.inf.homeshop.model.Product;
 
 public class MyCartFragment extends Fragment {
-    private List<Product> productList;
+    private List<CartItem> cartItemList;
     private RecyclerView recyclerView;
 
     @Override
@@ -45,7 +45,7 @@ public class MyCartFragment extends Fragment {
     //Initilizes the adapter, effectively putting the elements on the screen.
 
     private void initilizeAdapter() {
-        MyCartAdapter adapter = new MyCartAdapter(this.productList);
+        MyCartAdapter adapter = new MyCartAdapter(this.cartItemList);
         recyclerView.setAdapter(adapter);
     }
 
@@ -53,8 +53,9 @@ public class MyCartFragment extends Fragment {
      * Initializes the data that is being used, making the web request.
      */
     public void initializeData() {
-        this.productList = new ArrayList<>();
-        productList.add(new Product("Leite", "Branquinho", 45D, "nothing"));
+        this.cartItemList = new ArrayList<>();
+        Product product = new Product("Leite", "Branquinho", 45D, "nothing");
+        cartItemList.add(new CartItem(product, 10));
     }
 
     public void detailItem(View view) {

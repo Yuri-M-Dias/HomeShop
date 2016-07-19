@@ -9,14 +9,14 @@ import android.view.ViewGroup;
 import java.util.List;
 
 import br.ufg.inf.homeshop.R;
-import br.ufg.inf.homeshop.holder.ProductHolder;
+import br.ufg.inf.homeshop.holder.ProductListHolder;
 import br.ufg.inf.homeshop.model.Product;
 
 /**
  * Adapter to use the RecyclerView and be able to dynamically use a number of
  * cardviews.
  */
-public class ProductListAdapter extends RecyclerView.Adapter<ProductHolder>{
+public class ProductListAdapter extends RecyclerView.Adapter<ProductListHolder>{
 
     private List<Product> products;
 
@@ -30,16 +30,16 @@ public class ProductListAdapter extends RecyclerView.Adapter<ProductHolder>{
     }
 
     @Override
-    public ProductHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
+    public ProductListHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
         Log.d("homeshop", "Create View Holder");
         View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout
             .item_product, viewGroup, false);
-        ProductHolder productHolder = new ProductHolder(view);
-        return productHolder;
+        ProductListHolder productListHolder = new ProductListHolder(view);
+        return productListHolder;
     }
 
     @Override
-    public void onBindViewHolder(ProductHolder productsHolder, int i) {
+    public void onBindViewHolder(ProductListHolder productsHolder, int i) {
         productsHolder.name.setText(products.get(i).getDescription());
         productsHolder.price.setText("R$"+ products.get(i).getPrice());
         productsHolder.photo.setImageResource(R.drawable.jesus);
