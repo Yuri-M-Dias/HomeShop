@@ -24,5 +24,7 @@ public class MyCartProductHolder extends RecyclerView.ViewHolder {
         name = (TextView) itemView.findViewById(R.id.product_name);
         quantity = (NumberPicker) itemView.findViewById(R.id.product_quantity);
         price = (TextView) itemView.findViewById(R.id.product_price);
+
+
     }
 }
