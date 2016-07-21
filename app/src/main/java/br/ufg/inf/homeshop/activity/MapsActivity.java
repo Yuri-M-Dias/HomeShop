@@ -1,7 +1,9 @@
 package br.ufg.inf.homeshop.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
+import android.util.Log;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -14,12 +16,25 @@ import br.ufg.inf.homeshop.R;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
 
+    private static final String LOGTAG = "homeshop.maps";
+
     private GoogleMap mMap;
+    private LatLng localSupermercado;
+    private String nomeMercado;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maps);
+        Intent intent = getIntent();
+        //Default no meio da marginal
+        double latitude = intent.getDoubleExtra("latitude", -16.666667);
+        double longitude = intent.getDoubleExtra("longitude", -49.25);
+        nomeMercado = intent.getStringExtra("nome");
+        localSupermercado = new LatLng(latitude, longitude);
+        Log.d(LOGTAG, "Latitude: " + latitude);
+        Log.d(LOGTAG, "Longitude: " + longitude);
+        Log.d(LOGTAG, "Supermercado: " + nomeMercado);
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
             .findFragmentById(R.id.map);
@@ -38,10 +53,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
-
-        // Add a marker in Sydney and move the camera
-        LatLng sydney = new LatLng(-34, 151);
-        mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+        mMap.addMarker(new MarkerOptions().position(localSupermercado).title(nomeMercado));
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(localSupermercado, 16.0f));
     }
+
 }

@@ -1,13 +1,13 @@
 package br.ufg.inf.homeshop.model;
 
-import android.location.Location;
+import com.google.android.gms.maps.model.LatLng;
 
 public class Market {
 
     private Long id;
     private String name;
     private String image;
-    private Location location;
+    private LatLng location;
     private String products;
 
     public Market() {
@@ -18,7 +18,7 @@ public class Market {
         this.image = image;
     }
 
-    public Market(Long id, String name, String image, Location location) {
+    public Market(Long id, String name, String image, LatLng location) {
         this.id = id;
         this.name = name;
         this.image = image;
@@ -49,11 +49,11 @@ public class Market {
         this.image = image;
     }
 
-    public Location getLocation() {
+    public LatLng getLocation() {
         return location;
     }
 
-    public void setLocation(Location location) {
+    public void setLocation(LatLng location) {
         this.location = location;
     }
 

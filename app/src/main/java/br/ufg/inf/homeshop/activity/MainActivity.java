@@ -12,8 +12,6 @@ import android.view.View;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
-import com.squareup.picasso.Picasso;
-
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 
@@ -84,11 +82,11 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         ImageButton imageButton = (ImageButton) findViewById(R.id.market_image_button);
-        Picasso.with(this)
+        /*Picasso.with(this)
             .load(market.getImage())
             .placeholder(R.drawable.icon_loading)
             .error(R.drawable.icon_error)
-            .into(imageButton);
+            .into(imageButton);*/
     }
 
     @Override
@@ -127,6 +125,15 @@ public class MainActivity extends AppCompatActivity {
 
     public void readCode(View view) {
         Intent intent = new Intent(this, QRCodeActivity.class);
+        startActivity(intent);
+    }
+
+    public void abreMaps(View view) {
+        market.getLocation();
+        Intent intent = new Intent(this, MapsActivity.class);
+        intent.putExtra("latitude", market.getLocation().latitude);
+        intent.putExtra("longitude", market.getLocation().longitude);
+        intent.putExtra("nome", market.getName());
         startActivity(intent);
     }
 
