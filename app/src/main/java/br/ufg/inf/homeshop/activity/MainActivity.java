@@ -73,20 +73,13 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onTabUnselected(TabLayout.Tab tab) {
-
             }
 
             @Override
             public void onTabReselected(TabLayout.Tab tab) {
-
             }
         });
         ImageButton imageButton = (ImageButton) findViewById(R.id.market_image_button);
-        /*Picasso.with(this)
-            .load(market.getImage())
-            .placeholder(R.drawable.icon_loading)
-            .error(R.drawable.icon_error)
-            .into(imageButton);*/
     }
 
     @Override
@@ -121,7 +114,6 @@ public class MainActivity extends AppCompatActivity {
         appBar.setVisibility(showProgress ? View.GONE : View.VISIBLE);
         viewPager.setVisibility(showProgress ? View.GONE : View.VISIBLE);
     }
-
 
     public void readCode(View view) {
         Intent intent = new Intent(this, QRCodeActivity.class);

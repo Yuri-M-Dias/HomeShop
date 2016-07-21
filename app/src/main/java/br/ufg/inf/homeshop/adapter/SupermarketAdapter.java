@@ -8,7 +8,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
-import android.widget.Toast;
 
 import com.squareup.picasso.Picasso;
 
@@ -22,9 +21,7 @@ import br.ufg.inf.homeshop.model.Market;
 public class SupermarketAdapter extends BaseAdapter {
 
     private Context mContext;
-
     private LayoutInflater inflater;
-
     private List<Market> superMarkets;
 
     // Constructor
@@ -66,7 +63,7 @@ public class SupermarketAdapter extends BaseAdapter {
         convertView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(mContext, "Clicando no item: " + position, Toast.LENGTH_LONG).show();
+                //Toast.makeText(mContext, "Clicando no item: " + position, Toast.LENGTH_LONG).show();
                 SharedPreferences settings = mContext.getSharedPreferences(MainActivity.PREFERENCES_NAME, 0);
                 SharedPreferences.Editor editor = settings.edit();
                 editor.putLong("marketId", currentMarket.getId());

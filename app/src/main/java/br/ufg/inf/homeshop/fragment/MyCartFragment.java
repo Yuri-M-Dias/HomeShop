@@ -31,20 +31,15 @@ public class MyCartFragment extends Fragment {
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         recyclerView = (RecyclerView) getActivity().findViewById(R.id.mycart_list_recyclerview);
-
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
         recyclerView.setLayoutManager(linearLayoutManager);
         recyclerView.setHasFixedSize(true);
-
         initializeData();
         initilizeAdapter();
-
     }
 
     //Initilizes the adapter, effectively putting the elements on the screen.
-
     private void initilizeAdapter() {
         MyCartAdapter adapter = new MyCartAdapter(this.cartItemList);
         recyclerView.setAdapter(adapter);
@@ -55,7 +50,7 @@ public class MyCartFragment extends Fragment {
      */
     public void initializeData() {
         this.cartItemList = new ArrayList<>();
-        Product product = new Product("Leite", "Branquinho", 45D, "nothing");
+        Product product = new Product(1L, "nome", "description", 23.43D, "image");
         cartItemList.add(new CartItem(product, 10));
     }
 

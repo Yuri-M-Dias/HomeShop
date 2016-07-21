@@ -3,21 +3,17 @@ package br.ufg.inf.homeshop.services;
 import android.content.Context;
 
 import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
 
 import org.greenrobot.eventbus.EventBus;
-
-import java.lang.reflect.Type;
-import java.util.List;
 
 import br.ufg.inf.homeshop.R;
 import br.ufg.inf.homeshop.model.Product;
 
-public class WebTaskProductList extends WebTaskBase {
+public class WebTaskProductDetail extends WebTaskBase {
     private static final String SERVICE_URL = "markets/";
 
-    public WebTaskProductList(Context context, String marketId) {
-        super(context, SERVICE_URL + marketId + "/products", WebTaskBase.GET_METHOD);
+    public WebTaskProductDetail(Context context, String marketId, String productId) {
+        super(context, SERVICE_URL + marketId + "/products/" + productId, WebTaskBase.GET_METHOD);
     }
 
     @Override
@@ -26,11 +22,10 @@ public class WebTaskProductList extends WebTaskBase {
             EventBus.getDefault().post(new Error(getContext()
                 .getString(R.string.invalid_server_response)));
         }
-        Type typeToken = new TypeToken<List<Product>>(){}.getType();
         Gson gson = new Gson();
         try {
-            List<Product> productList = gson.fromJson(response, typeToken);
-            EventBus.getDefault().post(productList);
+            Product product = gson.fromJson(response, Product.class);
+            EventBus.getDefault().post(product);
         } catch (Exception e) {//TODO: REMOVE ME
             //TODO: erros no Gson?
             e.printStackTrace();

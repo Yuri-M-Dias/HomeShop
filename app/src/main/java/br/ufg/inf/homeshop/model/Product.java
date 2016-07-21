@@ -2,16 +2,34 @@ package br.ufg.inf.homeshop.model;
 
 public class Product {
 
+    private Long id;
     private String name;
     private String description;
     private Double price;
-    private String imageUrl;
+    private String image;
 
-    public Product(String name, String description, Double price, String imageUrl) {
+    public Product(Long id, String name, String description, Double price, String image) {
+        this.id = id;
         this.name = name;
         this.description = description;
         this.price = price;
-        this.imageUrl = imageUrl;
+        this.image = image;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
 
     public String getName() {
@@ -38,11 +56,4 @@ public class Product {
         this.price = price;
     }
 
-    public String getImageUrl() {
-        return imageUrl;
-    }
-
-    public void setImageUrl(String imageUrl) {
-        this.imageUrl = imageUrl;
-    }
 }
