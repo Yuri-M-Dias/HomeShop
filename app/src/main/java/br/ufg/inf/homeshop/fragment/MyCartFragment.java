@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import org.greenrobot.eventbus.EventBus;
@@ -75,6 +76,8 @@ public class MyCartFragment extends Fragment {
     private void initilizeAdapter() {
         MyCartAdapter adapter = new MyCartAdapter(this.cartItemList, getContext());
         recyclerView.setAdapter(adapter);
+        TextView precoTotal = (TextView) getActivity().findViewById(R.id.preco_total);
+        precoTotal.setText(R.string.preco_hard);
     }
 
 }

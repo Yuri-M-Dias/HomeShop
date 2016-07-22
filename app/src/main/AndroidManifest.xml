@@ -15,6 +15,7 @@
         <activity android:name=".activity.SupermarketActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -43,7 +44,6 @@
             android:name=".activity.MapsActivity"
             android:label="@string/title_activity_maps"
             android:noHistory="true" />
-
     </application>
 
 </manifest>

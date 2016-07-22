@@ -1,5 +1,7 @@
 package br.ufg.inf.homeshop.activity;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -144,4 +146,21 @@ public class MainActivity extends AppCompatActivity {
         return tabLayout;
     }
 
+    public void checkout(View view) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage("Você deseja finalizar a compra?")
+            .setPositiveButton("Comprar", new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int id) {
+                    Toast.makeText(getBaseContext(), "Obrigado por comprar!", Toast.LENGTH_LONG).show();
+                    dialog.dismiss();
+                }
+            })
+            .setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int id) {
+                    dialog.dismiss();
+                }
+            });
+        AlertDialog alertDialog = builder.create();
+        alertDialog.show();
+    }
 }
