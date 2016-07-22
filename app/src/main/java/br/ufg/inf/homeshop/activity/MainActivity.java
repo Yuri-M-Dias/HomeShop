@@ -8,6 +8,7 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.Toast;
@@ -53,15 +54,11 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         toolbar.setTitle(market.getName());
         setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         final ViewPager viewPagerFinal = (ViewPager) viewPager;
         final ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager(), 2);
         viewPagerFinal.setAdapter(adapter);
-        TabLayout tabs = (TabLayout) findViewById(R.id.tabs);
-        tabs.addTab(tabs.newTab());
-        tabs.addTab(tabs.newTab());
-        tabs.setupWithViewPager(viewPagerFinal);
-        tabs.getTabAt(0).setText(R.string.tab_produtos);
-        tabs.getTabAt(1).setText(R.string.tab_carrinho);
+        TabLayout tabs = createTabs(viewPagerFinal);
         viewPagerFinal.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabs));
         tabs.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
@@ -78,6 +75,12 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         ImageButton imageButton = (ImageButton) findViewById(R.id.market_image_button);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        finish();
+        return super.onOptionsItemSelected(item);
     }
 
     @Override
@@ -127,20 +130,14 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-//    @Override
-//    public boolean onCreateOptionsMenu(Menu menu) {
-//        getMenuInflater().inflate(R.menu.menu_main, menu);
-//        return true;
-//    }
-//
-//    @Override
-//    public boolean onOptionsItemSelected(MenuItem item) {
-//        int id = item.getItemId();
-//        if (id == R.id.action_settings) {
-//            return true;
-//        }
-//
-//        return super.onOptionsItemSelected(item);
-//    }
+    private TabLayout createTabs(ViewPager viewPager) {
+        TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
+        tabLayout.addTab(tabLayout.newTab());
+        tabLayout.addTab(tabLayout.newTab());
+        tabLayout.setupWithViewPager(viewPager);
+        tabLayout.getTabAt(0).setText("Produtos");
+        tabLayout.getTabAt(1).setText("Meu Carrinho");
+        return tabLayout;
+    }
 
 }
