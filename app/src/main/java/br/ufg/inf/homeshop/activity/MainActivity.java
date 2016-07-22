@@ -60,9 +60,8 @@ public class MainActivity extends AppCompatActivity {
         tabs.addTab(tabs.newTab());
         tabs.addTab(tabs.newTab());
         tabs.setupWithViewPager(viewPagerFinal);
-        //TODO: i18n
-        tabs.getTabAt(0).setText("Produtos");
-        tabs.getTabAt(1).setText("Meu Carrinho");
+        tabs.getTabAt(0).setText(R.string.tab_produtos);
+        tabs.getTabAt(1).setText(R.string.tab_carrinho);
         viewPagerFinal.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabs));
         tabs.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
