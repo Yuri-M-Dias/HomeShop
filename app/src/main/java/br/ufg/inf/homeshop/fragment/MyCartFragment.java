@@ -1,31 +1,38 @@
 package br.ufg.inf.homeshop.fragment;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageButton;
+import android.widget.Toast;
 
-import java.util.ArrayList;
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+
 import java.util.List;
 
 import br.ufg.inf.homeshop.R;
+import br.ufg.inf.homeshop.activity.MainActivity;
 import br.ufg.inf.homeshop.adapter.MyCartAdapter;
 import br.ufg.inf.homeshop.model.CartItem;
-import br.ufg.inf.homeshop.model.Product;
+import br.ufg.inf.homeshop.services.WebTaskCartList;
+import br.ufg.inf.homeshop.wrapper.CartItemWrapper;
 
 public class MyCartFragment extends Fragment {
+
     private List<CartItem> cartItemList;
     private RecyclerView recyclerView;
+    private Long userId;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         return inflater.inflate(R.layout.mycart_list, container, false);
-
     }
 
     @Override
@@ -35,29 +42,39 @@ public class MyCartFragment extends Fragment {
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
         recyclerView.setLayoutManager(linearLayoutManager);
         recyclerView.setHasFixedSize(true);
-        initializeData();
+        SharedPreferences settings = getContext().getSharedPreferences(MainActivity.PREFERENCES_NAME, 0);
+        userId = settings.getLong("userId", 1);
+        WebTaskCartList taskProductList = new WebTaskCartList(getContext(), String.valueOf(userId));
+        taskProductList.execute();
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        EventBus.getDefault().register(this);
+    }
+
+    @Override
+    public void onStop() {
+        EventBus.getDefault().unregister(this);
+        super.onStop();
+    }
+
+    @Subscribe
+    public void onEvent(CartItemWrapper cartItemWrapper) {
+        this.cartItemList = cartItemWrapper.getCartItemList();
         initilizeAdapter();
     }
 
-    //Initilizes the adapter, effectively putting the elements on the screen.
+    @Subscribe
+    public void onEvent(Error error) {
+        Log.e("productListFragment", "Error while fetching results.", error);
+        Toast.makeText(getContext(), "Erro ocorreu. Verifique sua internet.", Toast.LENGTH_LONG).show();
+    }
+
     private void initilizeAdapter() {
         MyCartAdapter adapter = new MyCartAdapter(this.cartItemList);
         recyclerView.setAdapter(adapter);
     }
-
-    /**
-     * Initializes the data that is being used, making the web request.
-     */
-    public void initializeData() {
-        this.cartItemList = new ArrayList<>();
-        Product product = new Product(1L, "nome", "description", 23.43D, "image");
-        cartItemList.add(new CartItem(product, 10));
-    }
-
-    public void detailItem(View view) {
-        ImageButton button = (ImageButton) view;
-        //Pega o item que foi clicado e cria a intent para o detail... mas como?
-    }
-
 
 }

@@ -9,9 +9,12 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.squareup.picasso.Picasso;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -34,7 +37,6 @@ public class DetailActivity extends AppCompatActivity {
         productId = intent.getLongExtra("productId", -1);
         SharedPreferences settings = getSharedPreferences(MainActivity.PREFERENCES_NAME, 0);
         marketId = settings.getLong("marketId", -1);
-        Toast.makeText(this, "Produto: " + productId, Toast.LENGTH_LONG).show();
         showProgress(true);
         WebTaskProductDetail taskProductDetail = new WebTaskProductDetail(this,
             String.valueOf(marketId), String.valueOf(productId));
@@ -54,7 +56,11 @@ public class DetailActivity extends AppCompatActivity {
         TextView productPrice = (TextView) findViewById(R.id.product_price);
         productPrice.setText(String.valueOf(product.getPrice()));
         ImageView productPicture = (ImageView) findViewById(R.id.image);
-        productPicture.setImageResource(R.drawable.jesus);
+        Picasso.with(this)
+            .load(product.getImage())
+            .placeholder(R.drawable.icon_loading)
+            .error(R.drawable.icon_error)
+            .into(productPicture);
     }
 
     @Override
@@ -97,4 +103,10 @@ public class DetailActivity extends AppCompatActivity {
         */
     }
 
+    public void adicionaCarrinho(View view) {
+        Intent intent = new Intent(this, MainActivity.class);
+        intent.putExtra("openCart", true);
+        //TODO: start a POST to the cart!
+        startActivity(intent);
+    }
 }

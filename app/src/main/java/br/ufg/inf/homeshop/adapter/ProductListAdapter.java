@@ -49,13 +49,12 @@ public class ProductListAdapter extends RecyclerView.Adapter<ProductListHolder>{
     public void onBindViewHolder(ProductListHolder productsHolder, final int i) {
         final Product product = products.get(i);
         productsHolder.name.setText(product.getDescription());
-        productsHolder.price.setText("R$"+ product.getPrice());
-        productsHolder.photo.setImageResource(R.drawable.jesus);
+        productsHolder.price.setText(String.format("R$%s", product.getPrice()));
         Picasso.with(mContext)
             .load(product.getImage())
             .placeholder(R.drawable.icon_loading)
             .error(R.drawable.icon_error)
-            .into(productsHolder.imageButton);
+            .into(productsHolder.photo);
         productsHolder.imageButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

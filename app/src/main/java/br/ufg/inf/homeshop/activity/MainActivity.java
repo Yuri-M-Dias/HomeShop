@@ -10,7 +10,6 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ImageButton;
 import android.widget.Toast;
 
 import org.greenrobot.eventbus.EventBus;
@@ -31,6 +30,7 @@ public class MainActivity extends AppCompatActivity {
 
     private long marketId;
     private Market market;
+    private boolean openCart;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +45,8 @@ public class MainActivity extends AppCompatActivity {
             //Não tem supermercado setado, volta para a tela de seleção.
             finish();
         }
+        Intent intent = getIntent();
+        openCart = intent.getBooleanExtra("openCart", false);
         showProgress(true);
         WebTaskMarketDetail taskSupermarket = new WebTaskMarketDetail(this, String.valueOf(marketId));
         taskSupermarket.execute();
@@ -74,7 +76,10 @@ public class MainActivity extends AppCompatActivity {
             public void onTabReselected(TabLayout.Tab tab) {
             }
         });
-        ImageButton imageButton = (ImageButton) findViewById(R.id.market_image_button);
+        if(openCart){
+            tabs.setScrollPosition(1, 0F, true);
+            viewPagerFinal.setCurrentItem(1);
+        }
     }
 
     @Override

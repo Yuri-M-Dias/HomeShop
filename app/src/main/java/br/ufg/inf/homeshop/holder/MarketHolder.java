@@ -11,4 +11,5 @@ public class MarketHolder extends RecyclerView.ViewHolder {
     public MarketHolder(View itemView) {
         super(itemView);
     }
+
 }

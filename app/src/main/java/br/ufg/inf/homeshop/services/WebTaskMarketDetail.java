@@ -27,8 +27,7 @@ public class WebTaskMarketDetail extends WebTaskBase {
         try {
             Market market = gson.fromJson(response, Market.class);
             EventBus.getDefault().post(market);
-        } catch (Exception e) {//TODO: REMOVE ME
-            //TODO: erros no Gson?
+        } catch (Exception e) {
             EventBus.getDefault().post(new Error(getContext()
                 .getString(R.string.invalid_server_response)));
         }

@@ -11,24 +11,25 @@ import java.lang.reflect.Type;
 import java.util.List;
 
 import br.ufg.inf.homeshop.R;
-import br.ufg.inf.homeshop.model.Product;
-import br.ufg.inf.homeshop.wrapper.ProductListWrapper;
+import br.ufg.inf.homeshop.model.CartItem;
+import br.ufg.inf.homeshop.wrapper.CartItemWrapper;
 
-public class WebTaskProductList extends WebTaskBase {
-    private static final String SERVICE_URL = "markets/";
+public class WebTaskCartList extends WebTaskBase {
 
-    public WebTaskProductList(Context context, String marketId) {
-        super(context, SERVICE_URL + marketId + "/products", WebTaskBase.GET_METHOD);
+    private static final String SERVICE_URL = "users/";
+
+    public WebTaskCartList(Context context, String userId) {
+        super(context, SERVICE_URL + userId + "/cart", WebTaskBase.GET_METHOD);
     }
 
     @Override
     public void handleResponse(String response) {
-        Type typeToken = new TypeToken<List<Product>>(){}.getType();
+        Type typeToken = new TypeToken<List<CartItem>>(){}.getType();
         Gson gson = new Gson();
         try {
-            List<Product> productList = gson.fromJson(response, typeToken);
-            ProductListWrapper productListWrapper = new ProductListWrapper(productList);
-            EventBus.getDefault().post(productListWrapper);
+            List<CartItem> productList = gson.fromJson(response, typeToken);
+            CartItemWrapper cartItemWrapper = new CartItemWrapper(productList);
+            EventBus.getDefault().post(cartItemWrapper);
         } catch (Exception e) {
             e.printStackTrace();
             EventBus.getDefault().post(new Error(getContext()
@@ -40,5 +41,4 @@ public class WebTaskProductList extends WebTaskBase {
     public String getRequestBody() {
         return null;
     }
-
 }

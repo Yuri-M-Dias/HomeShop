@@ -21,6 +21,7 @@ import br.ufg.inf.homeshop.activity.MainActivity;
 import br.ufg.inf.homeshop.adapter.ProductListAdapter;
 import br.ufg.inf.homeshop.model.Product;
 import br.ufg.inf.homeshop.services.WebTaskProductList;
+import br.ufg.inf.homeshop.wrapper.ProductListWrapper;
 
 public class ProductListFragment extends Fragment {
 
@@ -64,20 +65,17 @@ public class ProductListFragment extends Fragment {
     }
 
     @Subscribe
-    public void onEvent(List<Product> products) {
-        this.productList = products;
+    public void onEvent(ProductListWrapper listWrapper) {
+        this.productList = listWrapper.getProducts();
         initilizeAdapter();
-        Toast.makeText(getContext(), "Produtos carregados com sucesso!", Toast.LENGTH_LONG).show();
     }
 
     @Subscribe
     public void onEvent(Error error) {
         Log.e("productListFragment", "Error while fetching results.", error);
         Toast.makeText(getContext(), "Erro ocorreu. Verifique sua internet.", Toast.LENGTH_LONG).show();
-        //Flashes error
     }
 
-    //Initilizes the adapter, effectively putting the elements on the screen.
     private void initilizeAdapter() {
         ProductListAdapter adapter = new ProductListAdapter(this.productList, getContext());
         recyclerView.setAdapter(adapter);

@@ -16,6 +16,7 @@ import br.ufg.inf.homeshop.R;
 import br.ufg.inf.homeshop.adapter.SupermarketAdapter;
 import br.ufg.inf.homeshop.model.Market;
 import br.ufg.inf.homeshop.services.WebTaskSupermarketList;
+import br.ufg.inf.homeshop.wrapper.SupermarketsWrapper;
 
 public class SupermarketActivity extends AppCompatActivity {
 
@@ -53,9 +54,9 @@ public class SupermarketActivity extends AppCompatActivity {
         EventBus.getDefault().register(this);
     }
 
-    @Subscribe
-    public void onEvent(List<Market> markets) {
-        this.markets = markets;
+    @Subscribe()
+    public void onEvent(SupermarketsWrapper supermarketsWrapper) {
+        this.markets = supermarketsWrapper.getMarketList();
         attachAdapterToGrid();
     }
 
@@ -63,7 +64,6 @@ public class SupermarketActivity extends AppCompatActivity {
     public void onEvent(Error error) {
         showProgress(false);
         Log.e("supermarketActivity", "Error while fetching results.", error);
-        //Flashes error
     }
 
     private void showProgress(boolean showProgress) {

@@ -12,6 +12,7 @@ import java.util.List;
 
 import br.ufg.inf.homeshop.R;
 import br.ufg.inf.homeshop.model.Market;
+import br.ufg.inf.homeshop.wrapper.SupermarketsWrapper;
 
 public class WebTaskSupermarketList extends WebTaskBase {
 
@@ -31,7 +32,8 @@ public class WebTaskSupermarketList extends WebTaskBase {
         Gson gson = new Gson();
         try {
             List<Market> markets = gson.fromJson(response, typeToken);
-            EventBus.getDefault().post(markets);
+            SupermarketsWrapper supermarketsWrapper = new SupermarketsWrapper(markets);
+            EventBus.getDefault().post(supermarketsWrapper);
         } catch (Exception e) {
             EventBus.getDefault().post(new Error(getContext()
                 .getString(R.string.invalid_server_response)));
