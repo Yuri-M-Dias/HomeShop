@@ -28,11 +28,17 @@ public class DetailActivity extends AppCompatActivity {
     private Long productId = null;
     private Long marketId = null;
     private Product product;
+    private View progressView;
+    private View appbarView;
+    private View nestedScrollView;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_product_detail);
+        progressView = findViewById(R.id.detail_progress);
+        appbarView = findViewById(R.id.appbar);
+        nestedScrollView = findViewById(R.id.detail_scroll);
         Intent intent = getIntent();
         productId = intent.getLongExtra("productId", -1);
         SharedPreferences settings = getSharedPreferences(MainActivity.PREFERENCES_NAME, 0);
@@ -96,11 +102,9 @@ public class DetailActivity extends AppCompatActivity {
     }
 
     private void showProgress(boolean showProgress) {
-        /*
         progressView.setVisibility(showProgress ? View.VISIBLE : View.GONE);
-        appBar.setVisibility(showProgress ? View.GONE : View.VISIBLE);
-        viewPager.setVisibility(showProgress ? View.GONE : View.VISIBLE);
-        */
+        appbarView.setVisibility(showProgress ? View.GONE : View.VISIBLE);
+        nestedScrollView.setVisibility(showProgress ? View.GONE : View.VISIBLE);
     }
 
     public void adicionaCarrinho(View view) {

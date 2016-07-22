@@ -112,7 +112,6 @@ public class MainActivity extends AppCompatActivity {
         showProgress(false);
         Log.e("mainActivity", "Error while fetching results.", error);
         Toast.makeText(this, "Erro ocorreu. Verifique internet.", Toast.LENGTH_LONG).show();
-        //Flashes error
     }
 
     private void showProgress(boolean showProgress) {
