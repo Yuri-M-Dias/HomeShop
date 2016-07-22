@@ -160,12 +160,10 @@ References one product from a market.
 
 + Response 200 (application/json)
 
-    + Body
-
             {
                 "name": "Sucrilhos",
                 "description": "They are yummy.",
-                "price": "45,00",
+                "price": "45.00",
                 "image": "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEASABIAAD//gAMQXBwbGVN="
             }
 
@@ -189,8 +187,6 @@ Retrieves user information.
 ### Information of an User [GET]
 
 + Response 200 (application/json)
-
-    + Body
 
             {
                 "nome": "Leopoldo Magalhães",
@@ -231,8 +227,6 @@ Register an User
 
 + Response 200 (application/json)
 
-    + Body
-
             {
                 "id": "1",
                 "email": "leopoldo@gmail.com"
@@ -240,15 +234,11 @@ Register an User
 
 + Response 500 (application/json)
 
-    + Body
-
             {
                 "status": "Error while trying to register an user"
             }
 
 + Response 409 (application/json)
-
-    + Body
 
             {
                 "status": "Conflict: Email already registered"
@@ -320,15 +310,13 @@ The cart for the user specified.
 
 + Response 200 (application/json)
 
-    + Body
-
             {
                 "products": [
                     {
                         "id": 1,
                         "name": "Sucrilhos",
                         "description": "Yummy!",
-                        "price": "53,00",
+                        "price": "53.00",
                         "quantity": 3
                         "image": "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEASABIAAD//gAMQXBwbGVN="
                     },
@@ -336,14 +324,14 @@ The cart for the user specified.
                         "id": 2,
                         "name": "Omo",
                         "description": "Sabão em pó ação total",
-                        "price": "8,00",
+                        "price": "8.00",
                         "image": "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEASABIAAD//gAMQXBwbGVN="
                     },
                     {
                         "id": 3,
                         "name": "Arroz Cristal",
                         "description": "Pureza em forma de grãos",
-                        "price": "13,00",
+                        "price": "13.00",
                         "image": "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEASABIAAD//gAMQXBwbGVN="
                     }
                 ]
@@ -357,16 +345,12 @@ The cart for the user specified.
 
 + Response 404 (application/json)
 
-    + Body
-
             {
                 "error": "Empty cart"
             }
 ### Alters a product from cart [POST]
 
 + Response 200 (application/json)
-
-    + Body
 
             {
                 "status": "Success"
@@ -375,8 +359,6 @@ The cart for the user specified.
 ### Adds a product to cart [PUT]
 
 + Response 200 (application/json)
-
-    + Body
 
             {
                 "status": "Success"
