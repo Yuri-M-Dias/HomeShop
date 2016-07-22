@@ -1,8 +1,11 @@
 package br.ufg.inf.homeshop.activity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -18,7 +21,7 @@ import br.ufg.inf.homeshop.services.WebTaskUser;
 public class PerfilActivity extends AppCompatActivity {
 
     private User user;
-    private String userId;
+    private Long userId;
     private View mPerfilForm;
     private View mProgressView;
 
@@ -28,10 +31,23 @@ public class PerfilActivity extends AppCompatActivity {
         setContentView(R.layout.activity_perfil);
         mPerfilForm = findViewById(R.id.perfil_form);
         mProgressView = findViewById(R.id.perfil_progress);
-        userId = getIntent().getStringExtra("userId");
-        //TODO: remover após teste
-        userId = "1";
+        SharedPreferences settings = getSharedPreferences(MainActivity.PREFERENCES_NAME, 0);
+        userId = settings.getLong("userId", -1);
         getUserInformationFromServer();
+        createToolbar();
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+    }
+
+    private void createToolbar() {
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_register_user);
+        toolbar.setTitle(R.string.app_name);
+        setSupportActionBar(toolbar);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        finish();
+        return super.onOptionsItemSelected(item);
     }
 
     @Override
@@ -49,7 +65,7 @@ public class PerfilActivity extends AppCompatActivity {
     public void updateUserInfo(View view) {
         User user = getUserInfoFromView();
         showProgress(true);
-        String userURL = "users/" + userId;
+        String userURL = "users/" + String.valueOf(userId);
         WebTaskUser webTaskUser = new WebTaskUser(this, userURL, user, WebTaskUser.POST_METHOD);
         webTaskUser.execute();
     }
@@ -113,7 +129,7 @@ public class PerfilActivity extends AppCompatActivity {
         mPerfilForm.setVisibility(showProgress ? View.GONE : View.VISIBLE);
     }
 
-    private void setTextIntoEditTextView(int viewId, String text){
+    private void setTextIntoEditTextView(int viewId, String text) {
         ((EditText) findViewById(viewId)).setText(text);
     }
 }

@@ -18,4 +18,7 @@
     <string name="qr_code_invalido">QRCode inválido</string>
     <string name="tab_produtos">Produtos</string>
     <string name="tab_carrinho">Meu Carrinho</string>
+    <string name="menu_item_cadastrar">Cadastrar</string>
+    <string name="menu_item_perfil">Alterar dados</string>
+    <string name="menu_item_login">Login</string>
 </resources>

@@ -1,8 +1,11 @@
 package br.ufg.inf.homeshop.activity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -29,6 +32,14 @@ public class RegisterUserActivity extends AppCompatActivity {
         setContentView(R.layout.activity_register_user);
         mRegisterForm = findViewById(R.id.register_form);
         mProgressView = findViewById(R.id.register_progress);
+        createToolbar();
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+    }
+
+    private void createToolbar() {
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_register_user);
+        toolbar.setTitle(R.string.app_name);
+        setSupportActionBar(toolbar);
     }
 
     @Override
@@ -41,6 +52,12 @@ public class RegisterUserActivity extends AppCompatActivity {
     protected void onStop() {
         EventBus.getDefault().unregister(this);
         super.onStop();
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        finish();
+        return super.onOptionsItemSelected(item);
     }
 
     public void cadastrarUsuario(View view) {
@@ -66,11 +83,12 @@ public class RegisterUserActivity extends AppCompatActivity {
     public void onEvent(User user) {
         showProgress(false);
         Intent activity = new Intent(this, SupermarketActivity.class);
-        activity.putExtra("userId", user.getId());
-        activity.putExtra("userEmail", user.getEmail());
-
+        SharedPreferences settings = this.getSharedPreferences(MainActivity.PREFERENCES_NAME, 0);
+        SharedPreferences.Editor editor = settings.edit();
+        editor.putLong("userId", Long.valueOf(user.getId()));
+        editor.apply();
         showToast("Usuário cadastrado com sucesso.");
-        startActivity(activity);
+        finish();
     }
 
     @Subscribe

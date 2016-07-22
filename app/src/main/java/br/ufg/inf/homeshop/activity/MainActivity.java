@@ -76,7 +76,7 @@ public class MainActivity extends AppCompatActivity {
             public void onTabReselected(TabLayout.Tab tab) {
             }
         });
-        if(openCart){
+        if (openCart) {
             tabs.setScrollPosition(1, 0F, true);
             viewPagerFinal.setCurrentItem(1);
         }

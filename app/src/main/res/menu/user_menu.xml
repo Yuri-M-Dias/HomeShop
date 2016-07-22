@@ -1,0 +1,15 @@
+<menu
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/cadastrar_menu_item"
+        android:title="@string/menu_item_cadastrar"/>
+
+    <item
+        android:id="@+id/perfil_menu_item"
+        android:title="@string/menu_item_perfil"/>
+
+    <item
+        android:id="@+id/login_menu_item"
+        android:title="@string/menu_item_login"/>
+</menu>
