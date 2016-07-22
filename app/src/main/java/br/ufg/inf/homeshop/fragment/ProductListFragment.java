@@ -1,6 +1,5 @@
 package br.ufg.inf.homeshop.fragment;
 
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -19,7 +18,6 @@ import java.util.List;
 
 import br.ufg.inf.homeshop.R;
 import br.ufg.inf.homeshop.activity.MainActivity;
-import br.ufg.inf.homeshop.activity.SupermarketActivity;
 import br.ufg.inf.homeshop.adapter.ProductListAdapter;
 import br.ufg.inf.homeshop.model.Product;
 import br.ufg.inf.homeshop.services.WebTaskProductList;
@@ -43,14 +41,12 @@ public class ProductListFragment extends Fragment {
         SharedPreferences settings = getContext().getSharedPreferences(MainActivity.PREFERENCES_NAME, 0);
         marketId = settings.getLong("marketId", -1);
         if (marketId == -1) {
-            //Não tem mercado setado, volta para a tela de seleção.
-            Intent intent = new Intent(getActivity(), SupermarketActivity.class);
-            startActivity(intent);
+            //Não tem supermercado setado, volta para a tela de seleção.
+            getActivity().finish();
         }
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
         recyclerView.setLayoutManager(linearLayoutManager);
         recyclerView.setHasFixedSize(true);
-        //TODO: paginação
         WebTaskProductList taskProductList = new WebTaskProductList(getContext(), String.valueOf(marketId));
         taskProductList.execute();
     }

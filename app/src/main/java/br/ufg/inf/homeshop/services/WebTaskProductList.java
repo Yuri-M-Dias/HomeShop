@@ -22,7 +22,7 @@ public class WebTaskProductList extends WebTaskBase {
 
     @Override
     public void handleResponse(String response) {
-        if (response == null || response.isEmpty()){
+        if (response == null || response.isEmpty()) {
             EventBus.getDefault().post(new Error(getContext()
                 .getString(R.string.invalid_server_response)));
         }
@@ -31,8 +31,7 @@ public class WebTaskProductList extends WebTaskBase {
         try {
             List<Product> productList = gson.fromJson(response, typeToken);
             EventBus.getDefault().post(productList);
-        } catch (Exception e) {//TODO: REMOVE ME
-            //TODO: erros no Gson?
+        } catch (Exception e) {
             e.printStackTrace();
             EventBus.getDefault().post(new Error(getContext()
                 .getString(R.string.invalid_server_response)));

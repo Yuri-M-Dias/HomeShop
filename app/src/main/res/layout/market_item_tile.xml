@@ -3,8 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:tools="http://schemas.android.com/tools"
-    android:background="?android:attr/selectableItemBackground"
-    android:padding="@dimen/tile_padding">
+    android:background="?android:attr/selectableItemBackground">
 
     <ImageView
         android:id="@+id/tile_picture"

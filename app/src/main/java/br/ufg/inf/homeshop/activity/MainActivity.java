@@ -41,9 +41,8 @@ public class MainActivity extends AppCompatActivity {
         SharedPreferences settings = getSharedPreferences(PREFERENCES_NAME, 0);
         marketId = settings.getLong("marketId", -1);
         if (marketId == -1) {
-            //Não tem mercado setado, volta para a tela de seleção.
-            Intent intent = new Intent(this, SupermarketActivity.class);
-            startActivity(intent);
+            //Não tem supermercado setado, volta para a tela de seleção.
+            finish();
         }
         showProgress(true);
         WebTaskMarketDetail taskSupermarket = new WebTaskMarketDetail(this, String.valueOf(marketId));

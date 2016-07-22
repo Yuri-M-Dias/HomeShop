@@ -2,6 +2,7 @@ package br.ufg.inf.homeshop.activity;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.GridView;
@@ -31,9 +32,16 @@ public class SupermarketActivity extends AppCompatActivity {
         showProgress(true);
         WebTaskSupermarketList taskSupermarket = new WebTaskSupermarketList(this);
         taskSupermarket.execute();
+        createToolbar();
     }
 
-    private void attachAdapterToGrid(){
+    private void createToolbar() {
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_supermarkets);
+        toolbar.setTitle(R.string.app_name);
+        setSupportActionBar(toolbar);
+    }
+
+    private void attachAdapterToGrid() {
         SupermarketAdapter adapter = new SupermarketAdapter(this, markets);
         gridView.setAdapter(adapter);
         showProgress(false);
