@@ -11,6 +11,8 @@ import android.widget.ImageView;
 
 import com.squareup.picasso.Picasso;
 
+import org.greenrobot.eventbus.EventBus;
+
 import java.util.List;
 
 import br.ufg.inf.homeshop.R;
@@ -63,6 +65,7 @@ public class SupermarketAdapter extends BaseAdapter {
         convertView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                EventBus.getDefault().unregister(mContext);
                 //Toast.makeText(mContext, "Clicando no item: " + position, Toast.LENGTH_LONG).show();
                 SharedPreferences settings = mContext.getSharedPreferences(MainActivity.PREFERENCES_NAME, 0);
                 SharedPreferences.Editor editor = settings.edit();

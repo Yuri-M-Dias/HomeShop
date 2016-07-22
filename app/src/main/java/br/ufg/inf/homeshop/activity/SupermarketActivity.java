@@ -53,12 +53,6 @@ public class SupermarketActivity extends AppCompatActivity {
         EventBus.getDefault().register(this);
     }
 
-    @Override
-    protected void onStop() {
-        EventBus.getDefault().unregister(this);
-        super.onStop();
-    }
-
     @Subscribe
     public void onEvent(List<Market> markets) {
         this.markets = markets;
