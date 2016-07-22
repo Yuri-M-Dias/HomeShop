@@ -98,7 +98,7 @@ Returns more information about one supermarket, with links to more actions.
         {
             "id": 1,
             "name": "Extra",
-            "header": "base64:/imgs/markets/extra-header.png",
+            "image": "https://cdn.pbrd.co/images/elbA2rfOx.png",
             "products": "/markets/1/products",
             "location": {
                 "latitude": "-16.720745",
@@ -317,32 +317,45 @@ The cart for the user specified.
 
 + Response 200 (application/json)
 
+        [
             {
-                "products": [
-                    {
+                "product": {
                         "id": 1,
                         "name": "Sucrilhos",
-                        "description": "Yummy!",
-                        "price": "53.00",
-                        "quantity": 3
-                        "image": "https://cdn.pbrd.co/images/elbA2rfOx.png"
-                    },
-                    {
+                        "description": "Cereal Matinal Sucrilhos KELLOGG'S Caixa 730g",
+                        "price": "16.50",
+                        "image": "https://cdn.pbrd.co/images/eCKoX57At.png"
+                },
+                "quantity": 5
+            }, {
+                "product": {
                         "id": 2,
-                        "name": "Omo",
-                        "description": "Sabão em pó ação total",
-                        "price": "8.00",
-                        "image": "https://cdn.pbrd.co/images/elbA2rfOx.png"
-                    },
-                    {
+                        "name": "Sabão líquido OMO",
+                        "description": "Lava Roupas Líquido OMO Progress Super Concentrado 1,75 Litros",
+                        "price": "32.25",
+                        "image": "https://cdn.pbrd.co/images/eCO1wvFXD.png"
+                },
+                "quantity": 2
+            }, {
+                "product": {
+                        "id": 4,
+                        "name": "Sorvete La Basque",
+                        "description": "Sorvete de Menta com Pedaços de Chocolate LA BASQUE Pote 700ml",
+                        "price": "27.25",
+                        "image": "https://cdn.pbrd.co/images/eCL7BSlcQ.png"
+                },
+                "quantity": 1
+            }, {
+                "product": {
                         "id": 3,
-                        "name": "Arroz Cristal",
-                        "description": "Pureza em forma de grãos",
-                        "price": "13.00",
-                        "image": "https://cdn.pbrd.co/images/elbA2rfOx.png"
-                    }
-                ]
+                        "name": "Cerveja PATAGONIA",
+                        "description": "Cerveja PATAGONIA Bohemian Pilsen Garrafa 740ml",
+                        "price": "16.90",
+                        "image": "https://cdn.pbrd.co/images/eCMQrtsMk.png"
+                },
+                "quantity": 3
             }
+        ]
 
 + Request (application/json)
 
