@@ -43,7 +43,7 @@ public class DetailActivity extends AppCompatActivity {
         taskProductDetail.execute();
     }
 
-    private void initView(){
+    private void initView() {
         setSupportActionBar((Toolbar) findViewById(R.id.toolbar_product_detail));
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         CollapsingToolbarLayout collapsingToolbar =
@@ -54,7 +54,7 @@ public class DetailActivity extends AppCompatActivity {
         TextView productDetail = (TextView) findViewById(R.id.product_detail);
         productDetail.setText(product.getDescription());
         TextView productPrice = (TextView) findViewById(R.id.product_price);
-        productPrice.setText(String.valueOf(product.getPrice()));
+        productPrice.setText(String.format("R$%s", String.valueOf(product.getPrice())));
         ImageView productPicture = (ImageView) findViewById(R.id.image);
         Picasso.with(this)
             .load(product.getImage())

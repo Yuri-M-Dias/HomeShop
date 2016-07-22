@@ -40,7 +40,7 @@ public class MyCartAdapter extends RecyclerView.Adapter<MyCartProductHolder> {
     @Override
     public void onBindViewHolder(MyCartProductHolder myCartProductHolder, int i) {
         CartItem cartItem = myProductList.get(i);
-        myCartProductHolder.name.setText(cartItem.getProduct().getDescription());
+        myCartProductHolder.name.setText(cartItem.getProduct().getName());
         myCartProductHolder.price.setText(String.format("R$%s", cartItem.getProduct().getPrice()));
         Picasso.with(mContext)
             .load(cartItem.getProduct().getImage())

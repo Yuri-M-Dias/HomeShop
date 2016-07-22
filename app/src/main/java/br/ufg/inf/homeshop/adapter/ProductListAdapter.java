@@ -48,7 +48,7 @@ public class ProductListAdapter extends RecyclerView.Adapter<ProductListHolder>{
     @Override
     public void onBindViewHolder(ProductListHolder productsHolder, final int i) {
         final Product product = products.get(i);
-        productsHolder.name.setText(product.getDescription());
+        productsHolder.name.setText(product.getName());
         productsHolder.price.setText(String.format("R$%s", product.getPrice()));
         Picasso.with(mContext)
             .load(product.getImage())

@@ -7,7 +7,7 @@
     android:id="@+id/cardview">
 
     <RelativeLayout android:layout_width="match_parent"
-        android:layout_height="100dp"
+        android:layout_height="120dp"
         android:padding="16dp" >
 
         <ImageView android:layout_width="100dp"
