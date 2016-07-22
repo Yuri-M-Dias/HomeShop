@@ -53,7 +53,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
-        mMap.addMarker(new MarkerOptions().position(localSupermercado).title(nomeMercado));
+        MarkerOptions markerOptions = new MarkerOptions();
+        markerOptions.position(localSupermercado);
+        markerOptions.title(nomeMercado);
+        mMap.addMarker(markerOptions);
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(localSupermercado, 16.0f));
     }
 

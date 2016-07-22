@@ -1,9 +1,12 @@
 package br.ufg.inf.homeshop.adapter;
 
+import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -13,10 +16,12 @@ import br.ufg.inf.homeshop.model.CartItem;
 
 public class MyCartAdapter extends RecyclerView.Adapter<MyCartProductHolder> {
 
-    List<CartItem> myProductList;
+    private List<CartItem> myProductList;
+    private Context mContext;
 
-    public MyCartAdapter(List<CartItem> myProductList) {
+    public MyCartAdapter(List<CartItem> myProductList, Context mContext) {
         this.myProductList = myProductList;
+        this.mContext = mContext;
     }
 
     @Override
@@ -34,10 +39,15 @@ public class MyCartAdapter extends RecyclerView.Adapter<MyCartProductHolder> {
 
     @Override
     public void onBindViewHolder(MyCartProductHolder myCartProductHolder, int i) {
-        myCartProductHolder.name.setText(myProductList.get(i).getProduct().getDescription());
-        myCartProductHolder.price.setText(String.format("R$%s", myProductList.get(i).getProduct().getPrice()));
-        myCartProductHolder.photo.setImageResource(R.drawable.jesus);
-        myCartProductHolder.quantity.setValue(myProductList.get(i).getQuantity());
+        CartItem cartItem = myProductList.get(i);
+        myCartProductHolder.name.setText(cartItem.getProduct().getDescription());
+        myCartProductHolder.price.setText(String.format("R$%s", cartItem.getProduct().getPrice()));
+        Picasso.with(mContext)
+            .load(cartItem.getProduct().getImage())
+            .placeholder(R.drawable.icon_loading)
+            .error(R.drawable.icon_error)
+            .into(myCartProductHolder.photo);
+        myCartProductHolder.quantity.setValue(cartItem.getQuantity());
         myCartProductHolder.quantity.setMaxValue(100);
         myCartProductHolder.quantity.setMinValue(0);
         myCartProductHolder.quantity.setWrapSelectorWheel(false);

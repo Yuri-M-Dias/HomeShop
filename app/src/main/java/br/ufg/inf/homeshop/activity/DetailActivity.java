@@ -106,7 +106,7 @@ public class DetailActivity extends AppCompatActivity {
     public void adicionaCarrinho(View view) {
         Intent intent = new Intent(this, MainActivity.class);
         intent.putExtra("openCart", true);
-        //TODO: start a POST to the cart!
+        finish();
         startActivity(intent);
     }
 }

@@ -73,7 +73,7 @@ public class MyCartFragment extends Fragment {
     }
 
     private void initilizeAdapter() {
-        MyCartAdapter adapter = new MyCartAdapter(this.cartItemList);
+        MyCartAdapter adapter = new MyCartAdapter(this.cartItemList, getContext());
         recyclerView.setAdapter(adapter);
     }
 

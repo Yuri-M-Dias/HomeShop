@@ -21,7 +21,9 @@
         <activity android:name=".activity.PerfilActivity" />
         <activity android:name=".activity.RegisterUserActivity" />
         <activity android:name=".activity.MainActivity" />
-        <activity android:name=".activity.QRCodeActivity" />
+        <activity
+            android:name=".activity.QRCodeActivity"
+            android:noHistory="true" />
         <activity android:name=".activity.DetailActivity" />
 
         <!--
@@ -38,7 +40,8 @@
 
         <activity
             android:name=".activity.MapsActivity"
-            android:label="@string/title_activity_maps"/>
+            android:label="@string/title_activity_maps"
+            android:noHistory="true" />
 
     </application>
 
