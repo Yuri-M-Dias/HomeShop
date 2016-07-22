@@ -13,10 +13,4 @@
         android:scaleType="centerCrop"
         tools:src="@drawable/jesus" />
 
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/tile_height"
-        android:alpha="0.3"
-        android:background="@color/colorAccent" />
-
 </RelativeLayout>
