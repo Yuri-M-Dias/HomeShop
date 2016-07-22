@@ -22,23 +22,17 @@ Handles the login of a previous user. Should be sent over SSL.
 
 + Response 200 (application/json)
 
-    + Body
-
             {
                 "id": "1"
             }
 
 + Response 422 (application/json)
 
-    + Body
-
             {
                 "error": "Failed to authenticate. Wrong username or password."
             }
 
 + Response 500 (application/json)
-
-    + Body
 
             {
                 "error": "Internal server error."
@@ -59,31 +53,31 @@ Returns a list of supermarkets, with links to their images.
             {
                 "id": 1,
                 "name": "Extra",
-                "image": "https://cdn.pbrd.co/images/ekuL8BD7H.webp",
+                "image": "https://cdn.pbrd.co/images/eksb1xE9w.png",
                 "products": "/markets/1/products"
             },
             {
                 "id": 2,
                 "name": "Carrefour",
-                "image": "http://i0.wp.com/logobr.org/wp-content/uploads/2009/10/Carrefour.jpg?zoom=1.5&fit=420%2C276",
+                "image": "https://cdn.pbrd.co/images/ekSkKCyeG.png",
                 "products": "/markets/2/products"
             },
             {
                 "id": 3,
                 "name": "Bretas",
-                "image": "http://seeklogo.com/images/B/bretas-supermercado-logo-FFE5262213-seeklogo.com.gif",
+                "image": "https://cdn.pbrd.co/images/1qTXbziIj.png",
                 "products": "/markets/3/products"
             },
             {
                 "id": 4,
                 "name": "Pão de açucar",
-                "image": "http://seeklogo.com/images/P/pao-de-acucar-logo-F0493D0EE0-seeklogo.com.png",
+                "image": "https://cdn.pbrd.co/images/el4ErSEL0.png",
                 "products": "/markets/4/products"
             },
             {
                 "id": 5,
-                "name": "Barão",
-                "image": "https://fbcdn-profile-a.akamaihd.net/hprofile-ak-xtf1/v/t1.0-1/13600215_931286913684033_748324593895396071_n.png?oh=134026ebf8ec8a4f90c75b5153702dd3&oe=5828E7A2&__gda__=1479272331_eb1f06d72560a7df56b4102191ca0661",
+                "name": "Wallmart",
+                "image": "https://cdn.pbrd.co/images/elbA2rfOx.png",
                 "products": "/markets/5/products"
             }
         ]
@@ -171,7 +165,7 @@ References one product from a market.
             {
                 "name": "Sucrilhos",
                 "description": "They are yummy.",
-                "price": "R$45,00",
+                "price": "45,00",
                 "image": "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEASABIAAD//gAMQXBwbGVN="
             }
 
@@ -334,7 +328,7 @@ The cart for the user specified.
                         "id": 1,
                         "name": "Sucrilhos",
                         "description": "Yummy!",
-                        "price": "R$53,00",
+                        "price": "53,00",
                         "quantity": 3
                         "image": "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEASABIAAD//gAMQXBwbGVN="
                     },
@@ -342,14 +336,14 @@ The cart for the user specified.
                         "id": 2,
                         "name": "Omo",
                         "description": "Sabão em pó ação total",
-                        "price": "R$8,00",
+                        "price": "8,00",
                         "image": "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEASABIAAD//gAMQXBwbGVN="
                     },
                     {
                         "id": 3,
                         "name": "Arroz Cristal",
                         "description": "Pureza em forma de grãos",
-                        "price": "R$13,00",
+                        "price": "13,00",
                         "image": "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEASABIAAD//gAMQXBwbGVN="
                     }
                 ]
@@ -417,19 +411,19 @@ References the collection of all previous carts, for a specific user, and a mark
                     {
                         "id": 14,
                         "market": "Extra",
-                        "total": "R$54,00",
+                        "total": "54.00",
                         "date": 1466209329
                     },
                     {
                         "id": 24,
                         "market": "Marcos",
-                        "total": "R$87,92",
+                        "total": "87.92",
                         "date": 1466209330
                     },
                     {
                         "id": 39,
                         "market": "Extra",
-                        "total": "R$11,23",
+                        "total": "11.23",
                         "date": 1466209331
                     }
                 ]
@@ -447,17 +441,17 @@ References the collection of all previous carts, for a specific user, and a mark
                 "history": [
                     {
                         "id": 1,
-                        "total": "R$54,00",
+                        "total": "54.00",
                         "date": 1466209329
                     },
                     {
                         "id": 2,
-                        "total": "R$87,92",
+                        "total": "87.92",
                         "date": 1466209330
                     },
                     {
                         "id": 3,
-                        "total": "R$11,23",
+                        "total": "11.23",
                         "date": 1466209331
                     }
                 ]
@@ -483,25 +477,25 @@ References the a single history for that user.
                 },
                 "market": "Extra",
                 "date": 1466209329,
-                "total": "R$54,00",
+                "total": "54.00",
                 "products": [
                     {
                         "id": 14,
                         "quantity": 5,
-                        "unitaryPrice": "R$5,12",
-                        "totalUnitary": "R$25,60"
+                        "unitaryPrice": "5.12",
+                        "totalUnitary": "25.60"
                     },
                     {
                         "id": 16,
                         "quantity": 1,
-                        "unitaryPrice": "R$5,11",
-                        "totalUnitary": "R$25,00"
+                        "unitaryPrice": "5.11",
+                        "totalUnitary": "25.00"
                     },
                     {
                         "id": 18,
                         "quantity": 2,
-                        "unitaryPrice": "R$5,12",
-                        "totalUnitary": "R$25,60"
+                        "unitaryPrice": "5.12",
+                        "totalUnitary": "25.60"
                     }
                 ]
         }
