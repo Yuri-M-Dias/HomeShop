@@ -8,6 +8,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.squareup.picasso.Picasso;
+
 import java.util.List;
 
 import br.ufg.inf.homeshop.R;
@@ -48,9 +50,13 @@ public class ProductListAdapter extends RecyclerView.Adapter<ProductListHolder>{
         final Product product = products.get(i);
         productsHolder.name.setText(product.getDescription());
         productsHolder.price.setText("R$"+ product.getPrice());
-        //TODO: imagem do mock
         productsHolder.photo.setImageResource(R.drawable.jesus);
-        productsHolder.itemView.setOnClickListener(new View.OnClickListener() {
+        Picasso.with(mContext)
+            .load(product.getImage())
+            .placeholder(R.drawable.icon_loading)
+            .error(R.drawable.icon_error)
+            .into(productsHolder.imageButton);
+        productsHolder.imageButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(mContext, DetailActivity.class);

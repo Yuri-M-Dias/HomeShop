@@ -8,7 +8,6 @@ import com.google.gson.reflect.TypeToken;
 import org.greenrobot.eventbus.EventBus;
 
 import java.lang.reflect.Type;
-import java.util.ArrayList;
 import java.util.List;
 
 import br.ufg.inf.homeshop.R;
@@ -31,10 +30,9 @@ public class WebTaskSupermarketList extends WebTaskBase {
         Type typeToken = new TypeToken<List<Market>>(){}.getType();
         Gson gson = new Gson();
         try {
-            ArrayList<Market> markets = gson.fromJson(response, typeToken);
+            List<Market> markets = gson.fromJson(response, typeToken);
             EventBus.getDefault().post(markets);
-        } catch (Exception e) {//TODO: REMOVE ME
-            //TODO: erros no Gson?
+        } catch (Exception e) {
             EventBus.getDefault().post(new Error(getContext()
                 .getString(R.string.invalid_server_response)));
         }

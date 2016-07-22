@@ -5,7 +5,7 @@ android {
         config {
             keyAlias 'homeshop'
             keyPassword 'homeshop'
-            storeFile file('/mnt/30981D3668F3B6C6/Dropbox/Sétimo Período/Ubíquo/HomeShop/release.jks')
+            storeFile file('../release.jks')
             storePassword 'homeshop'
         }
     }

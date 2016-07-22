@@ -1,7 +1,5 @@
 package br.ufg.inf.homeshop.holder;
 
-import android.content.Context;
-import android.content.Intent;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -10,7 +8,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import br.ufg.inf.homeshop.R;
-import br.ufg.inf.homeshop.activity.DetailActivity;
 
 public class ProductListHolder extends RecyclerView.ViewHolder {
     public CardView cv;
@@ -26,14 +23,5 @@ public class ProductListHolder extends RecyclerView.ViewHolder {
         imageButton = (ImageButton) itemView.findViewById(R.id.product_add);
         name = (TextView) itemView.findViewById(R.id.product_name);
         price = (TextView) itemView.findViewById(R.id.product_price);
-
-        imageButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Context context = v.getContext();
-                Intent intent = new Intent(context, DetailActivity.class);
-                context.startActivity(intent);
-            }
-        });
     }
 }

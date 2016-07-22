@@ -3,6 +3,7 @@ package br.ufg.inf.homeshop.adapter;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -29,8 +30,8 @@ public class SupermarketAdapter extends BaseAdapter {
     // Constructor
     public SupermarketAdapter(Context c, List<Market> superMarkets) {
         this.superMarkets = superMarkets;
-        mContext = c;
-        inflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        this.mContext = c;
+        this.inflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
 
     @Override
@@ -45,7 +46,7 @@ public class SupermarketAdapter extends BaseAdapter {
 
     @Override
     public long getItemId(int position) {
-        return 0;
+        return superMarkets.get(position).getId();
     }
 
     @Override
@@ -53,6 +54,10 @@ public class SupermarketAdapter extends BaseAdapter {
         convertView = inflater.inflate(R.layout.market_item_tile, parent, false);
         MarketHolder marketHolder = new MarketHolder(convertView);
         marketHolder.picture = (ImageView) convertView.findViewById(R.id.tile_picture);
+        if (marketHolder.picture == null) {
+            Log.e("homeshp", "null picture!");
+            return convertView;
+        }
         final Market currentMarket = superMarkets.get(position);
         ImageView imageView = marketHolder.picture;
         Picasso.with(mContext)

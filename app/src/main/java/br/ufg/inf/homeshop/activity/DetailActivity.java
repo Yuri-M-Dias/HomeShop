@@ -1,10 +1,8 @@
 package br.ufg.inf.homeshop.activity;
 
-import android.annotation.TargetApi;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v7.app.AppCompatActivity;
@@ -28,7 +26,6 @@ public class DetailActivity extends AppCompatActivity {
     private Long marketId = null;
     private Product product;
 
-    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,13 +49,12 @@ public class DetailActivity extends AppCompatActivity {
         collapsingToolbar.setExpandedTitleColor(Color.BLACK);
         collapsingToolbar.setCollapsedTitleTextColor(Color.WHITE);
         collapsingToolbar.setTitle(product.getName());
-        TextView placeDetail = (TextView) findViewById(R.id.product_detail);
-        placeDetail.setText(product.getDescription());
-        TextView placeLocation = (TextView) findViewById(R.id.product_price);
-        placeLocation.setText(product.getDescription());
-        ImageView placePicutre = (ImageView) findViewById(R.id.image);
-        //TODO: pegar a imagem!
-        placePicutre.setImageResource(R.drawable.jesus);
+        TextView productDetail = (TextView) findViewById(R.id.product_detail);
+        productDetail.setText(product.getDescription());
+        TextView productPrice = (TextView) findViewById(R.id.product_price);
+        productPrice.setText(String.valueOf(product.getPrice()));
+        ImageView productPicture = (ImageView) findViewById(R.id.image);
+        productPicture.setImageResource(R.drawable.jesus);
     }
 
     @Override
