@@ -34,6 +34,8 @@
                 android:layout_height="wrap_content"
                 android:src="@drawable/location"
                 android:onClick="abreMaps"
+                android:layout_gravity="end"
+                android:layout_marginRight="5dp"
                 android:background="@android:color/black"/>
 
         </android.support.v7.widget.Toolbar>
